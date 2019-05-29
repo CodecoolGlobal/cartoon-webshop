@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" th:href="@{/}">Homepage</a>
+                <a class="nav-item nav-link active" th:href="@{/}">Back to homepage</a>
             </div>
         </div>
     </nav>
@@ -47,7 +47,9 @@
         </table>
         <strong><p th:text="'Total price: ' + ${order.getTotalPrice()}">Total price</p></strong>
     </div>
-
+    <div>
+        <a class="btn btn-info" th:href="@{/checkout}">Checkout</a>
+    </div>
 </div>
 
 <div th:replace="footer.html :: copy"></div>
