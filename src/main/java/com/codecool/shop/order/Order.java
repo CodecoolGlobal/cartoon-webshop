@@ -67,4 +67,12 @@ public class Order {
         }
     }
 
+    public int calculateNumberOfItemsInCart() {
+        int sumOfItems = 0;
+        for (LineItem lineItem: itemList) {
+            sumOfItems += lineItem.getQuantity();
+        }
+        return sumOfItems;
+    }
+
 }

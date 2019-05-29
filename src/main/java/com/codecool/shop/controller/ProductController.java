@@ -7,6 +7,7 @@ import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.order.LineItem;
 import com.codecool.shop.order.Order;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(urlPatterns = {"/"})
@@ -30,14 +32,19 @@ public class ProductController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("products", productDataStore.getAll());
-        engine.process("product/index.html", context, resp.getWriter());
 
 
-        // if a product is added to the cart
+        // if a product is added to the cart, this adds it to the itemList in Order class
         if (req.getParameter("added-item") != null) {
             int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
             Order.getInstance().add(itemToAdd);
         }
+
+        // displaying the number of items in the cart on the index page
+        int numberOfItemsInCart = Order.getInstance().calculateNumberOfItemsInCart();
+        context.setVariable("numOfCartItems", numberOfItemsInCart);
+
+        engine.process("product/index.html", context, resp.getWriter());
     }
 
 }

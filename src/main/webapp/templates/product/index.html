@@ -15,9 +15,12 @@
     <!-- NAV-BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
-            </div>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
+                </li>
+            </ul>
+            <span class="navbar-text" th:text="'Number of items: ' + ${numOfCartItems}"></span>
         </div>
     </nav>
 
