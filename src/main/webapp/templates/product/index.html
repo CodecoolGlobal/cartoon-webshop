@@ -11,6 +11,17 @@
 </div>
 
 <div class="container">
+
+    <!-- NAV-BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ITEMS -->
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
             <div class="card">
