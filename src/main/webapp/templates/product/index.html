@@ -6,23 +6,25 @@
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+<div class="bg">
+    <div class="jumbotron text-center">
+        <h1>Codecool Shop</h1>
+    </div>
 </div>
 
-<div class="container">
+<!-- NAV-BAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+    <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
+            </li>
+        </ul>
+        <span class="navbar-text" th:text="'Number of items: ' + ${numOfCartItems}"></span>
+    </div>
+</nav>
 
-    <!-- NAV-BAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
-                </li>
-            </ul>
-            <span class="navbar-text" th:text="'Number of items: ' + ${numOfCartItems}"></span>
-        </div>
-    </nav>
+<div class="container">
 
     <!-- ITEMS -->
     <div id="products" class="row">

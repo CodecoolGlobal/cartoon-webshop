@@ -6,21 +6,22 @@
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Shopping cart items</h1>
+<div class="bg">
+    <div class="jumbotron text-center">
+        <h1>Shopping cart items</h1>
+    </div>
 </div>
 
-<div class="container">
-
-    <!-- NAV-BAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" th:href="@{/}">Homepage</a>
-            </div>
+<!-- NAV-BAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" th:href="@{/}">Homepage</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
+<div class="container">
 
     <!-- ITEMS -->
     <div id="products" class="row">
@@ -28,6 +29,7 @@
             <thead>
                 <th>Item</th>
                 <th>Quantity</th>
+                <th>Add / Remove</th>
                 <th>Unit price</th>
                 <th>Subtotal price</th>
             </thead>
@@ -35,6 +37,10 @@
                 <tr th:each="item,iterStat : ${items}">
                     <td th:text="${item.getProduct().getName()}">Product name</td>
                     <td th:text="${item.getQuantity()}">Product quantity</td>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{/shopping-cart(removed-item=${item.getProduct().getId()})}">-</a>
+                        <a class="btn btn-success" th:href="@{/shopping-cart(added-item=${item.getProduct().getId()})}">+</a>
+                    </td>
                     <td th:text="${item.getProduct().getPrice()}">Unit price</td>
                     <td th:text="${item.getLinePrice()}">Subtotal price</td>
                 </tr>
