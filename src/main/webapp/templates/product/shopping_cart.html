@@ -24,11 +24,11 @@
 
     <!-- ITEMS -->
     <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="item,iterStat : ${items}">
-            <ul>
-                <li th:text="${item.getProductInfo()}">Product name: price and currency</li>
-            </ul>
-        </div>
+        <ul>
+            <div th:each="item,iterStat : ${items}">
+                <li th:text="${item.getProduct().getName()}">Product name: price and currency</li>
+            </div>
+        </ul>
     </div>
 
 </div>
