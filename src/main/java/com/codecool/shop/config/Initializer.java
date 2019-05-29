@@ -13,6 +13,7 @@ import com.codecool.shop.model.Supplier;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.util.Collections;
 
 @WebListener
 public class Initializer implements ServletContextListener {
@@ -70,5 +71,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Johnny Bravo", 100, "USD", "Johnny Bravo has the looks of James Dean and sounds like Elvis Presley. He is incredibly super muscular, narcissistic and dim-witted, traits, that lead to a severe incorrigible inability to attract women.", hero, cartoonNetwork));
         productDataStore.add(new Product("Mandark", 400, "USD", "Dexter's rival and later mortal nemesis who often seeks to destroy both Dexter and his lab to prove once and for all that he is the superior genius.", villain, cartoonNetwork));
         productDataStore.add(new Product("Dee Dee", 320, "USD", "Dexter's older sister, who is mostly seen destroying or ruining Dexter's lab in various ways.", sidekick, cartoonNetwork));
+
+        Collections.sort(productDataStore.getAll(), ProductDaoMem.ProductNameComparator);
     }
 }
