@@ -42,16 +42,16 @@
     <form>
         <div class="form-group">
             <label for="inputName">Name</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Name">
+            <input type="text" class="form-control" id="inputName" placeholder="Name" required="required">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="required">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPhone">Phone number</label>
-                <input type="tel" class="form-control" id="inputPhone" placeholder="Phone number">
+                <input type="tel" class="form-control" id="inputPhone" placeholder="Phone number" required="required">
             </div>
         </div>
 
@@ -61,20 +61,20 @@
 
             <div class="form-group col-md-4">
                 <label for="inputCountry">Country</label>
-                <input type="text" class="form-control" id="inputCountry" placeholder="Country">
+                <input type="text" class="form-control" id="inputCountry" placeholder="Country" required="required">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="City">
+                <input type="text" class="form-control" id="inputCity" placeholder="City" required="required">
             </div>
             <div class="form-group col-md-2">
                 <label for="inputZip">Zipcode</label>
-                <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
+                <input type="text" class="form-control" id="inputZip" placeholder="Zipcode" required="required">
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+            <input type="text" class="form-control" id="inputAddress" placeholder="Address" required="required">
         </div>
 
 
@@ -82,7 +82,8 @@
         <div class="form-group">
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck" onclick="if( this.checked ) { fillForm2(); } else { clearForm2(); }">
+                <input class="form-check-input" type="checkbox" id="gridCheck"
+                       onclick="if( this.checked ) { fillForm2(); } else { clearForm2(); }">
                 <label class="form-check-label" for="gridCheck">
                     Same as billing address
                 </label>
@@ -93,26 +94,23 @@
 
             <div class="form-group col-md-4">
                 <label for="inputCountry2">Country</label>
-                <input type="text" class="form-control" id="inputCountry2" placeholder="Country">
+                <input type="text" class="form-control" id="inputCountry2" placeholder="Country" required="required">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputCity2">City</label>
-                <input type="text" class="form-control" id="inputCity2" placeholder="City">
+                <input type="text" class="form-control" id="inputCity2" placeholder="City" required="required">
             </div>
             <div class="form-group col-md-2">
                 <label for="inputZip2">Zipcode</label>
-                <input type="text" class="form-control" id="inputZip2" placeholder="Zipcode">
+                <input type="text" class="form-control" id="inputZip2" placeholder="Zipcode" required="required">
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress2">Address</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Address">
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Address" required="required">
         </div>
 
-
-        <div>
-            <a class="btn btn-success" th:href="@{/payment}">Go to payment page</a>
-        </div>
+        <button type="submit" class="btn btn-success">Go to payment page</button>
     </form>
 
 </div>
