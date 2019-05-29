@@ -5,6 +5,8 @@ import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.order.LineItem;
+import com.codecool.shop.order.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -27,9 +29,15 @@ public class ProductController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-//        context.setVariable("category", productCategoryDataStore.find(1));
         context.setVariable("products", productDataStore.getAll());
         engine.process("product/index.html", context, resp.getWriter());
+
+
+        // if a product is added to the cart
+        if (req.getParameter("added-item") != null) {
+            int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
+            Order.getInstance().add(itemToAdd);
+        }
     }
 
 }
