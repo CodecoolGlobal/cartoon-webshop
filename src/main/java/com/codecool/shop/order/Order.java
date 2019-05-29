@@ -67,4 +67,12 @@ public class Order {
         }
     }
 
+    public String getTotalPrice() {
+        float price = 0;
+        for (LineItem lineItem : itemList) {
+            price += lineItem.getLinePriceAmount();
+        }
+        return String.valueOf(price) + " USD";
+    }
+
 }
