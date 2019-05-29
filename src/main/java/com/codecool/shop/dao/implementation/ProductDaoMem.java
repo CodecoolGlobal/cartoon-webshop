@@ -60,16 +60,26 @@ public class ProductDaoMem implements ProductDao {
     }
 
     /*PRODUCT NAME COMPARATOR*/
-    public static Comparator<Product> ProductNameComparator = (o1, o2) -> {
+    private static Comparator<Product> ProductNameComparator = (o1, o2) -> {
         String productName1 = o1.getName().toUpperCase();
         String productName2 = o2.getName().toUpperCase();
         return productName1.compareTo(productName2);
     };
 
     /*PRODUCT ID COMPARATOR*/
-    public static Comparator<Product> ProductIDComparator = (o1, o2) -> {
+    private static Comparator<Product> ProductIDComparator = (o1, o2) -> {
         Integer productName1 = o1.getId();
         Integer productName2 = o2.getId();
         return productName1.compareTo(productName2);
     };
+
+    public void doSort(){
+        data.sort(ProductDaoMem.ProductNameComparator);
+        int idIndex = 1;
+        for (Product product: data) {
+            product.setId(idIndex);
+            idIndex++;
+        }
+    }
+
 }

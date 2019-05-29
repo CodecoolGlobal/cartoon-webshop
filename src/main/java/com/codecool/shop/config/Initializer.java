@@ -20,7 +20,7 @@ public class Initializer implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductDaoMem productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
@@ -72,11 +72,6 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Mandark", 400, "USD", "Dexter's rival and later mortal nemesis who often seeks to destroy both Dexter and his lab to prove once and for all that he is the superior genius.", villain, cartoonNetwork));
         productDataStore.add(new Product("Dee Dee", 320, "USD", "Dexter's older sister, who is mostly seen destroying or ruining Dexter's lab in various ways.", sidekick, cartoonNetwork));
 
-        Collections.sort(productDataStore.getAll(), ProductDaoMem.ProductNameComparator);
-        int idIndex = 1;
-        for (Product product: productDataStore.getAll()) {
-            product.setId(idIndex);
-            idIndex++;
-        }
+        productDataStore.doSort();
     }
 }
