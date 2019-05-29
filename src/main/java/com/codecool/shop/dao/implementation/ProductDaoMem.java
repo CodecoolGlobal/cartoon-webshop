@@ -59,11 +59,17 @@ public class ProductDaoMem implements ProductDao {
         return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
     }
 
-
+    /*PRODUCT NAME COMPARATOR*/
     public static Comparator<Product> ProductNameComparator = (o1, o2) -> {
         String productName1 = o1.getName().toUpperCase();
         String productName2 = o2.getName().toUpperCase();
         return productName1.compareTo(productName2);
+    };
 
+    /*PRODUCT ID COMPARATOR*/
+    public static Comparator<Product> ProductIDComparator = (o1, o2) -> {
+        Integer productName1 = o1.getId();
+        Integer productName2 = o2.getId();
+        return productName1.compareTo(productName2);
     };
 }

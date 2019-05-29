@@ -73,5 +73,10 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Dee Dee", 320, "USD", "Dexter's older sister, who is mostly seen destroying or ruining Dexter's lab in various ways.", sidekick, cartoonNetwork));
 
         Collections.sort(productDataStore.getAll(), ProductDaoMem.ProductNameComparator);
+        int idIndex = 1;
+        for (Product product: productDataStore.getAll()) {
+            product.setId(idIndex);
+            idIndex++;
+        }
     }
 }
