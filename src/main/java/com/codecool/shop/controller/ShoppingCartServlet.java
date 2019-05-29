@@ -19,14 +19,29 @@ public class ShoppingCartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Order order = Order.getInstance();
         List<LineItem> items = order.getItems();
+
+        // if a product is added to the cart, this adds it to the itemList in Order class
+        if (req.getParameter("added-item") != null) {
+            int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
+            order.add(itemToAdd);
+        }
+
+        // if a product is removed from the cart, this removes it from the itemList in Order class
+        if (req.getParameter("removed-item") != null) {
+            int itemToRemove = Integer.parseInt(req.getParameter("removed-item"));
+            order.remove(itemToRemove);
+        }
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("order", order);
         context.setVariable("items", items);
         engine.process("product/shopping_cart.html", context, resp.getWriter());
+
+
 
     }
 
