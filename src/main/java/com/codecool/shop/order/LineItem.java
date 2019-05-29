@@ -21,4 +21,13 @@ public class LineItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public float getLinePriceAmount() {
+        return product.getDefaultPrice()*quantity;
+    }
+
+    public String getLinePrice() {
+        float price = getLinePriceAmount();
+        return String.valueOf(price) + " " + product.getDefaultCurrency().toString();
+    }
 }

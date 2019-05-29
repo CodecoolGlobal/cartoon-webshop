@@ -24,11 +24,23 @@
 
     <!-- ITEMS -->
     <div id="products" class="row">
-        <ul>
-            <div th:each="item,iterStat : ${items}">
-                <li th:text="${item.getProduct().getName()}">Product name: price and currency</li>
-            </div>
-        </ul>
+        <table class="table table-bordered">
+            <thead>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Unit price</th>
+                <th>Subtotal price</th>
+            </thead>
+            <tbody>
+                <tr th:each="item,iterStat : ${items}">
+                    <td th:text="${item.getProduct().getName()}">Product name</td>
+                    <td th:text="${item.getQuantity()}">Product quantity</td>
+                    <td th:text="${item.getProduct().getPrice()}">Unit price</td>
+                    <td th:text="${item.getLinePrice()}">Subtotal price</td>
+                </tr>
+            </tbody>
+        </table>
+        <strong><p th:text="'Total price: ' + ${order.getTotalPrice()}">Total price</p></strong>
     </div>
 
 </div>

@@ -24,6 +24,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
+        context.setVariable("order", order);
         context.setVariable("items", items);
         engine.process("product/shopping_cart.html", context, resp.getWriter());
 
