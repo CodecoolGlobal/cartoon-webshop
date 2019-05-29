@@ -27,18 +27,17 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-        WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("products", productDataStore.getAll());
-
 
         // if a product is added to the cart, this adds it to the itemList in Order class
         if (req.getParameter("added-item") != null) {
             int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
             Order.getInstance().add(itemToAdd);
         }
+
+        // setting variables for templateEngine
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+        context.setVariable("products", productDataStore.getAll());
 
         // displaying the number of items in the cart on the index page
         int numberOfItemsInCart = Order.getInstance().calculateNumberOfItemsInCart();
