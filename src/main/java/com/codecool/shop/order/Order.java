@@ -43,7 +43,6 @@ public class Order {
                         orderItem.setQuantity(orderItem.getQuantity() + 1);
                         itemIsAlreadyInCart = true;
                     }
-                    break;
                 }
 
                 // if the product isn't in the cart, it adds the lineitem to it
@@ -52,7 +51,6 @@ public class Order {
                     itemList.add(lineItem);
                 }
             }
-            break;
         }
     }
 
