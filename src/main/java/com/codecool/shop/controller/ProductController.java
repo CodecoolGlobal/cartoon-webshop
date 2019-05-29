@@ -1,7 +1,9 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Supplier;
@@ -22,6 +24,7 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
         // if a product is added to the cart, this adds it to the itemList in Order class
         if (req.getParameter("added-item") != null) {
@@ -33,8 +36,9 @@ public class ProductController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         /*TODO*/
-        Supplier supplier = SupplierDaoMem.getInstance().getAll().get(0);
-        context.setVariable("products", productDataStore.getBy(supplier));
+        /*Supplier supplier = SupplierDaoMem.getInstance().getAll().get(0);*/
+        context.setVariable("products", productDataStore.getAll());
+        context.setVariable("categories", productCategoryDataStore.getAll());
 
         // displaying the number of items in the cart on the index page
         int numberOfItemsInCart = Order.getInstance().calculateNumberOfItemsInCart();
