@@ -43,6 +43,8 @@ public class CheckoutController extends HttpServlet {
             user.setAttribute(param, value);
         }
 
+        Order.getInstance().setUser(user);
+
         //TODO redirect to payment page
         resp.sendRedirect("/");
     }
