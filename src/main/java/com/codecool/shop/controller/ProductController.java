@@ -7,7 +7,10 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import com.codecool.shop.order.Order;
+import jdk.jfr.Category;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -36,13 +39,35 @@ public class ProductController extends HttpServlet {
         // setting variables for templateEngine
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        /*TODO*/
-        /*Supplier supplier = SupplierDaoMem.getInstance().getAll().get(0);*/
 
-        /*DATA TRANSFER*/
-        context.setVariable("products", productDataStore.getAll());
+        /*---------------------------------------------DATA TRANSFER--------------------------------------------------*/
+
+        /*Category filtering*/
+
+        if(req.getParameter("category_id") != null){
+            int categoryID = Integer.parseInt(req.getParameter("category_id"));
+            ProductCategory filteredCategory = productCategoryDataStore.find(categoryID);
+            context.setVariable("products", productDataStore.getBy(filteredCategory));
+        }
+
+        /*Supplier filtering*/
+
+        else if(req.getParameter("supplier_id") != null){
+            int supplierID = Integer.parseInt(req.getParameter("supplier_id"));
+            Supplier filteredSupplier = supplierDataStore.find(supplierID);
+            context.setVariable("products", productDataStore.getBy(filteredSupplier));
+        }
+
+        else{
+            context.setVariable("products", productDataStore.getAll());
+        }
+
+        /*Data transfer of Category & Supplier*/
+
         context.setVariable("categories", productCategoryDataStore.getAll());
         context.setVariable("suppliers", supplierDataStore.getAll());
+
+        /*------------------------------------------------------------------------------------------------------------*/
 
         // displaying the number of items in the cart on the index page
         int numberOfItemsInCart = Order.getInstance().calculateNumberOfItemsInCart();
