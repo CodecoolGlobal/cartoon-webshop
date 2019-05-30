@@ -27,6 +27,10 @@
                             aria-expanded="false">Filter by Category
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a
+                            class="dropdown-item"
+                            th:href="@{/(category_id=${0})}">All
+                        </a>
                         <a class="dropdown-item"
                            th:each="category: ${categories}"
                            th:href="@{/(category_id=${category.getId()})}"
@@ -44,6 +48,10 @@
                             aria-expanded="false">Filter by Supplier
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a
+                            class="dropdown-item"
+                            th:href="@{/(supplier_id=${0})}">All
+                        </a>
                         <a class="dropdown-item"
                            th:each="supplier: ${suppliers}"
                            th:href="@{/(supplier_id=${supplier.getId()})}"
