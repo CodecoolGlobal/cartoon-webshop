@@ -76,3 +76,7 @@
     text-shadow: black 0.3em 0.3em 0.3em;
     background:transparent;
 }
+
+.moreMarginRight {
+    margin-right: 25px;
+}

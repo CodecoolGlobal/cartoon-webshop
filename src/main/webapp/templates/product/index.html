@@ -16,16 +16,40 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
+            <li class="nav-item moreMarginRight">
                 <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
             </li>
             <li class="nav-item">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filterByCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter by Category
+                <div class="dropdown  moreMarginRight">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button" id="filterByCategory"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">Filter by Category
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a th:each="category: ${categories}" class="dropdown-item" th:href="@{/(category_id=${category.getId()})}" th:text="${category.getName()}">Category name</a>
+                        <a class="dropdown-item"
+                           th:each="category: ${categories}"
+                           th:href="@{/(category_id=${category.getId()})}"
+                           th:text="${category.getName()}">Category name
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button" id="filterBySupplier"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">Filter by Supplier
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"
+                           th:each="supplier: ${suppliers}"
+                           th:href="@{/(supplier_id=${supplier.getId()})}"
+                           th:text="${supplier.getName()}">Supplier name
+                        </a>
                     </div>
                 </div>
             </li>
@@ -40,7 +64,9 @@
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
             <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.png'" alt="" />
+                <img class="" src="http://placehold.it/400x250/000/fff"
+                     th:attr="src='/static/img/product_' + ${prod.id} + '.png'"
+                     alt="" />
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text" th:text="${prod.description}">Product description... </p>
