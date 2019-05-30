@@ -32,6 +32,7 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         User user = new User();
         Enumeration en = req.getParameterNames();
 
@@ -42,6 +43,7 @@ public class CheckoutController extends HttpServlet {
             user.setAttribute(param, value);
         }
 
-        System.out.println(user.getName());
+        //TODO redirect to payment page
+        resp.sendRedirect("/");
     }
 }
