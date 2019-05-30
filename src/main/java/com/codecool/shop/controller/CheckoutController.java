@@ -4,6 +4,7 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.order.Order;
+import com.codecool.shop.order.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -31,13 +32,16 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new User();
         Enumeration en = req.getParameterNames();
 
         while (en.hasMoreElements()) {
             Object object = en.nextElement();
             String param = (String) object;
             String value = req.getParameter(param);
-            System.out.println(param  + ": " + value);
+            user.setAttribute(param, value);
         }
+
+        System.out.println(user.getName());
     }
 }
