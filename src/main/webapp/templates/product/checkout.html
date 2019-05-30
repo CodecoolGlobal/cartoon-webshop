@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header.html :: copy"></div>
+    <script>
+        function fillForm2() {
+            document.getElementById( 'shippingCountry' ).value = document.getElementById( 'billingCountry' ).value;
+            document.getElementById( 'shippingCity' ).value = document.getElementById( 'billingCity' ).value;
+            document.getElementById( 'shippingZip' ).value = document.getElementById( 'billingZip' ).value;
+            document.getElementById( 'shippingAddress' ).value = document.getElementById( 'billingAddress' ).value;
+        }
+        function clearForm2() {
+            document.getElementById( 'shippingCountry' ).value = "";
+            document.getElementById( 'shippingCity' ).value = "";
+            document.getElementById( 'shippingZip' ).value = "";
+            document.getElementById( 'shippingAddress' ).value = "";
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="bg">
+    <div class="jumbotron text-center">
+    </div>
+</div>
+
+    <!-- NAV-BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/}">Back to homepage</a>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+
+    <!--CHECKOUT FORM-->
+    <h4>Checkout</h4>
+
+    <form action="/checkout" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name"
+                   id="name" placeholder="Name" required="required">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email"
+                       id="email" placeholder="Email" required="required">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phoneNumber">Phone number</label>
+                <input type="tel" class="form-control" name="phoneNumber"
+                       id="phoneNumber" placeholder="Phone number" required="required">
+            </div>
+        </div>
+
+        <div class="form-group form-control-lg col-md-4">Billing address</div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="billingCountry">Country</label>
+                <input type="text" class="form-control" name="billingCountry"
+                       id="billingCountry" placeholder="Country" required="required">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="billingCity">City</label>
+                <input type="text" class="form-control" name="billingCity"
+                       id="billingCity" placeholder="City" required="required">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="billingZip">Zipcode</label>
+                <input type="text" class="form-control" name="billingZip"
+                       id="billingZip" placeholder="Zipcode" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="billingAddress">Address</label>
+            <input type="text" class="form-control" name="billingAddress"
+                   id="billingAddress" placeholder="Address" required="required">
+        </div>
+
+
+        <div class="form-group form-control-lg col-md-4">Shipping address</div>
+        <div class="form-group">
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck"
+                       onclick="if( this.checked ) { fillForm2(); } else { clearForm2(); }">
+                <label class="form-check-label" for="gridCheck">
+                    Same as billing address
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="shippingCountry">Country</label>
+                <input type="text" class="form-control" name="shippingCountry"
+                       id="shippingCountry" placeholder="Country" required="required">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="shippingCity">City</label>
+                <input type="text" class="form-control" name="shippingCity"
+                       id="shippingCity" placeholder="City" required="required">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="shippingZip">Zipcode</label>
+                <input type="text" class="form-control" name="shippingZip"
+                       id="shippingZip" placeholder="Zipcode" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="shippingAddress">Address</label>
+            <input type="text" class="form-control" name="shippingAddress"
+                   id="shippingAddress" placeholder="Address" required="required">
+        </div>
+
+        <button type="submit" class="btn btn-success">Go to payment page</button>
+    </form>
+
+</div>
+
+<div th:replace="footer.html :: copy"></div>
+
+</body>
+</html>

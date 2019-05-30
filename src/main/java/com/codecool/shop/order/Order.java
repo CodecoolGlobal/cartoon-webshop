@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Order {
     private List<LineItem> itemList = new ArrayList<>();
+    private User user;
     private static Order instance = null;
 
     private Order() {}
@@ -83,4 +84,7 @@ public class Order {
         return sumOfItems;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

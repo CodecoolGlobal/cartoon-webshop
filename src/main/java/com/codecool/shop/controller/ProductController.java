@@ -7,7 +7,6 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.Supplier;
 import com.codecool.shop.order.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
