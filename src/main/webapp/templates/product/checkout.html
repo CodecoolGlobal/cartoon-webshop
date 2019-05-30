@@ -4,16 +4,16 @@
     <div th:replace="header.html :: copy"></div>
     <script>
         function fillForm2() {
-            document.getElementById( 'inputCountry2' ).value = document.getElementById( 'inputCountry' ).value;
-            document.getElementById( 'inputCity2' ).value = document.getElementById( 'inputCity' ).value;
-            document.getElementById( 'inputZip2' ).value = document.getElementById( 'inputZip' ).value;
-            document.getElementById( 'inputAddress2' ).value = document.getElementById( 'inputAddress' ).value;
+            document.getElementById( 'shippingCountry' ).value = document.getElementById( 'billingCountry' ).value;
+            document.getElementById( 'shippingCity' ).value = document.getElementById( 'billingCity' ).value;
+            document.getElementById( 'shippingZip' ).value = document.getElementById( 'billingZip' ).value;
+            document.getElementById( 'shippingAddress' ).value = document.getElementById( 'billingAddress' ).value;
         }
         function clearForm2() {
-            document.getElementById( 'inputCountry2' ).value = "";
-            document.getElementById( 'inputCity2' ).value = "";
-            document.getElementById( 'inputZip2' ).value = "";
-            document.getElementById( 'inputAddress2' ).value = "";
+            document.getElementById( 'shippingCountry' ).value = "";
+            document.getElementById( 'shippingCity' ).value = "";
+            document.getElementById( 'shippingZip' ).value = "";
+            document.getElementById( 'shippingAddress' ).value = "";
         }
     </script>
 </head>
@@ -41,17 +41,20 @@
 
     <form action="/checkout" method="post">
         <div class="form-group">
-            <label for="inputName">Name</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Name" required="required">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name"
+                   id="name" placeholder="Name" required="required">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="required">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email"
+                       id="email" placeholder="Email" required="required">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPhone">Phone number</label>
-                <input type="tel" class="form-control" id="inputPhone" placeholder="Phone number" required="required">
+                <label for="phoneNumber">Phone number</label>
+                <input type="tel" class="form-control" name="phoneNumber"
+                       id="phoneNumber" placeholder="Phone number" required="required">
             </div>
         </div>
 
@@ -60,21 +63,25 @@
         <div class="form-row">
 
             <div class="form-group col-md-4">
-                <label for="inputCountry">Country</label>
-                <input type="text" class="form-control" id="inputCountry" placeholder="Country" required="required">
+                <label for="billingCountry">Country</label>
+                <input type="text" class="form-control" name="billingCountry"
+                       id="billingCountry" placeholder="Country" required="required">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="City" required="required">
+                <label for="billingCity">City</label>
+                <input type="text" class="form-control" name="billingCity"
+                       id="billingCity" placeholder="City" required="required">
             </div>
             <div class="form-group col-md-2">
-                <label for="inputZip">Zipcode</label>
-                <input type="text" class="form-control" id="inputZip" placeholder="Zipcode" required="required">
+                <label for="billingZip">Zipcode</label>
+                <input type="text" class="form-control" name="billingZip"
+                       id="billingZip" placeholder="Zipcode" required="required">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Address" required="required">
+            <label for="billingAddress">Address</label>
+            <input type="text" class="form-control" name="billingAddress"
+                   id="billingAddress" placeholder="Address" required="required">
         </div>
 
 
@@ -93,21 +100,25 @@
         <div class="form-row">
 
             <div class="form-group col-md-4">
-                <label for="inputCountry2">Country</label>
-                <input type="text" class="form-control" id="inputCountry2" placeholder="Country" required="required">
+                <label for="shippingCountry">Country</label>
+                <input type="text" class="form-control" name="shippingCountry"
+                       id="shippingCountry" placeholder="Country" required="required">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputCity2">City</label>
-                <input type="text" class="form-control" id="inputCity2" placeholder="City" required="required">
+                <label for="shippingCity">City</label>
+                <input type="text" class="form-control" name="shippingCity"
+                       id="shippingCity" placeholder="City" required="required">
             </div>
             <div class="form-group col-md-2">
-                <label for="inputZip2">Zipcode</label>
-                <input type="text" class="form-control" id="inputZip2" placeholder="Zipcode" required="required">
+                <label for="shippingZip">Zipcode</label>
+                <input type="text" class="form-control" name="shippingZip"
+                       id="shippingZip" placeholder="Zipcode" required="required">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputAddress2">Address</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Address" required="required">
+            <label for="shippingAddress">Address</label>
+            <input type="text" class="form-control" name="shippingAddress"
+                   id="shippingAddress" placeholder="Address" required="required">
         </div>
 
         <button type="submit" class="btn btn-success">Go to payment page</button>

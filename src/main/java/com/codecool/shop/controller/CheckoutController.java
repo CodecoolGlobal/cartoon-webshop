@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebServlet(urlPatterns = {"/checkout"})
 public class CheckoutController extends HttpServlet {
@@ -30,6 +31,13 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameterNames());
+        Enumeration en = req.getParameterNames();
+
+        while (en.hasMoreElements()) {
+            Object object = en.nextElement();
+            String param = (String) object;
+            String value = req.getParameter(param);
+            System.out.println(param  + ": " + value);
+        }
     }
 }
