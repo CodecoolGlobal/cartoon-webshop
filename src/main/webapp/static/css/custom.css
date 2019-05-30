@@ -76,3 +76,8 @@
     text-shadow: black 0.3em 0.3em 0.3em;
     background:transparent;
 }
+
+body {
+    background: url('/static/img/sample_header.jpg') no-repeat center bottom fixed;
+    width: 100%;
+}
