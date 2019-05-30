@@ -20,6 +20,7 @@
     </nav>
 
 <div class="container">
+    <div class="card p-3 bg-light">
 
     <!-- ITEMS -->
     <div class="card-body">
@@ -48,6 +49,9 @@
                     </tr>
                 </tbody>
             </table>
+
+        </div>
+        <div class="float-right">
             <strong><h4 class="card-subtitle pull-right" th:text="'Total price: ' + ${order.getTotalPrice()}">Total price</h4></strong>
         </div>
 
@@ -55,6 +59,7 @@
             <a class="btn btn-info" th:href="@{/checkout}">Checkout</a>
         </div>
 
+    </div>
     </div>
 
 </div>
