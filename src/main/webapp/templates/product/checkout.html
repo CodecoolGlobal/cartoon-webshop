@@ -20,25 +20,25 @@
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Checkout</h1>
+<div class="bg">
+    <div class="jumbotron text-center">
+    </div>
 </div>
-
-<div class="container">
 
     <!-- NAV-BAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-item nav-link active" th:href="@{/}">Back to homepage</a>
-                </li>
-            </ul>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" th:href="@{/}">Back to homepage</a>
+            </div>
         </div>
     </nav>
 
+<div class="container">
 
     <!--CHECKOUT FORM-->
+    <h4>Checkout</h4>
+
     <form action="/checkout" method="post">
         <div class="form-group">
             <label for="inputName">Name</label>
