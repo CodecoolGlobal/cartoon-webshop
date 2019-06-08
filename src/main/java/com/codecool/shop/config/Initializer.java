@@ -2,6 +2,7 @@ package com.codecool.shop.config;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.DB_connection;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
@@ -72,5 +73,8 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Dee Dee", 320, "USD", "Dexter's older sister, who is mostly seen destroying or ruining Dexter's lab in various ways.", sidekick, cartoonNetwork));
 
         productDataStore.doSort();
+
+        DB_connection db_conn = new DB_connection();
+        db_conn.all();
     }
 }
