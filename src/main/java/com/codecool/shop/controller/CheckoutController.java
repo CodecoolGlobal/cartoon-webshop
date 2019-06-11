@@ -1,8 +1,6 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.order.Order;
 import com.codecool.shop.order.User;
 import org.thymeleaf.TemplateEngine;
@@ -23,10 +21,8 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // setting variables for templateEngine
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-
 
         engine.process("product/checkout.html", context, resp.getWriter());
     }
@@ -36,8 +32,7 @@ public class CheckoutController extends HttpServlet {
 
         setUserInOrder(req);
 
-        //TODO redirect to payment page
-        resp.sendRedirect("/");
+        resp.sendRedirect("/payment");
     }
 
     private void setUserInOrder(HttpServletRequest req) {
