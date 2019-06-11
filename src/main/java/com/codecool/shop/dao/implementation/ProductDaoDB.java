@@ -77,13 +77,13 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        String query = String.format("SELECT * products WHERE id = %d", supplier.getId());
+        String query = String.format("SELECT * FROM products WHERE id = %d", supplier.getId());
         return getFilteredProducts(query);
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        String query = String.format("SELECT * products WHERE id = %d", productCategory.getId());
+        String query = String.format("SELECT * FROM products WHERE id = %d", productCategory.getId());
         return getFilteredProducts(query);
     }
 
