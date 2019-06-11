@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Enumeration;
 
 @WebServlet(urlPatterns = {"/checkout"})
@@ -33,14 +34,22 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+        //TODO refactor: better names, in separate method
         User user = new User();
+
         Enumeration en = req.getParameterNames();
 
         while (en.hasMoreElements()) {
             Object object = en.nextElement();
             String param = (String) object;
             String value = req.getParameter(param);
-            user.setAttribute(param, value);
+            try {
+                Field field = user.getDeclaredField(param);
+                user.setField(field, value);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
         Order.getInstance().setUser(user);
