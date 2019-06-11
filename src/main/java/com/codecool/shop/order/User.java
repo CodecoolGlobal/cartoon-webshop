@@ -15,12 +15,21 @@ public class User {
     private String shippingZip;
     private String shippingAddress;
 
-    public Field getDeclaredField(String param) throws NoSuchFieldException {
-        return this.getClass().getDeclaredField(param);
+    public Field getDeclaredField(String fieldName){
+        try {
+            return this.getClass().getDeclaredField(fieldName);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public void setField(Field field, String value) throws IllegalAccessException {
-        field.set(this, value);
+    public void setField(Field field, String value){
+        try {
+            field.set(this, value);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
 }
