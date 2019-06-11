@@ -24,12 +24,21 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
 
     @Override
     public void add(ProductCategory category) {
-        String statement = "INSERT INTO categories (id, name, department, description) " +
-                "VALUES (DEFAULT, '" + category.getName() +
-                "', '" + category.getDepartment() +
-                "', '" + category.getDescription() +
-                "');";
-        super.executeStatement(statement);
+        String statement =
+                String.format("INSERT INTO categories (id, name, department, description) VALUES (DEFAULT, %n, %d, %s);",
+                category.getName(), category.getDepartment(), category.getDescription());
+
+        try (Connection connection = getConnection();
+             PreparedStatement pStatement = connection.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS)){
+            ResultSet resultSet = pStatement.executeQuery();
+            ResultSet generatedKey = pStatement.getGeneratedKeys();
+            if(generatedKey.next()){
+                category.setId(generatedKey.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(category.getId());
     }
 
     @Override
