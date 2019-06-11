@@ -36,11 +36,11 @@ public class CheckoutController extends HttpServlet {
     }
 
     private void setUserInOrder(HttpServletRequest req) {
-        User user = new User();
+        User newUser = new User();
 
-        setUserAttributesFromForm(req, user);
+        setUserAttributesFromForm(req, newUser);
 
-        Order.getInstance().setUser(user);
+        Order.getInstance().setUser(newUser);
     }
 
     private void setUserAttributesFromForm(HttpServletRequest req, User user) {
