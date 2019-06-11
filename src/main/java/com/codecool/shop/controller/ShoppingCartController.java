@@ -15,34 +15,46 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/shopping-cart"})
-public class ShoppingCartServlet extends HttpServlet {
+public class ShoppingCartController extends HttpServlet {
+
+    private Order order = Order.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Order order = Order.getInstance();
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+
+        context.setVariable("order", order);
+
         List<LineItem> items = order.getItems();
+        context.setVariable("items", items);
 
-        // if a product is added to the cart, this adds it to the itemList in Order class
-        if (req.getParameter("added-item") != null) {
-            int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
-            order.add(itemToAdd);
-        }
+        engine.process("product/shopping_cart.html", context, resp.getWriter());
 
-        // if a product is removed from the cart, this removes it from the itemList in Order class
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        addOneItemToOrder(req);
+
+        removeOneItemFromOrder(req);
+
+        this.doGet(req, resp);
+    }
+
+    private void removeOneItemFromOrder(HttpServletRequest req) {
         if (req.getParameter("removed-item") != null) {
             int itemToRemove = Integer.parseInt(req.getParameter("removed-item"));
             order.remove(itemToRemove);
         }
-
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-        WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("order", order);
-        context.setVariable("items", items);
-        engine.process("product/shopping_cart.html", context, resp.getWriter());
-
-
-
     }
 
+    private void addOneItemToOrder(HttpServletRequest req) {
+        if (req.getParameter("added-item") != null) {
+            int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
+            order.add(itemToAdd);
+        }
+    }
 }
