@@ -5,13 +5,14 @@ import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 
 
-
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryDaoDB extends DB_connection implements ProductCategoryDao {
 
     private static ProductCategoryDaoDB instance = null;
+    private ProductCategory ProductCategory;
 
     public static ProductCategoryDaoDB getInstance() {
         if (instance == null) {
@@ -77,44 +78,47 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
 
     @Override
     public void remove(int id) {
+        String statement = String.format("DELETE FROM categories WHERE id = %d", id);
+        super.executeStatement(statement);
 
     }
 
     @Override
     public List<ProductCategory> getAll() {
-        return null;
-    }
+        String query = "SELECT * FROM categories";
+
+        List<ProductCategory> result = new ArrayList<>();
 
 
-    /*public List<Object> executeQuery(String SQL_Statement   ){
         try (Connection connection = getConnection();
-             PreparedStatement pStatement =connection.prepareStatement(SQL_Statement)) {
+             PreparedStatement pStatement = connection.prepareStatement(query)){
+
             ResultSet resultSet = pStatement.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+            while(resultSet.next()){
 
-    public void all() {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(" ");
-        String query = "SELECT * FROM products;";
 
-        try (Connection connection = getConnection();
-             Statement statement =connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery(query);
-        ){
-            while (resultSet.next()){
-                System.out.println(resultSet.getString("id"));
-                System.out.println(resultSet.getString("name"));
-                System.out.println(resultSet.getString("description"));
-                System.out.println(resultSet.getString("defaultPrice"));
-                System.out.println(resultSet.getString("defaultCurrency"));
+                int returned_id = resultSet.getInt("id");
+                String returned_name = resultSet.getString("name");
+                String returned_department = resultSet.getString("department");
+                String returned_description = resultSet.getString("description");
+
+                ProductCategory returnedProductCategory = new ProductCategory(
+                        returned_name,
+                        returned_department,
+                        returned_description
+                );
+
+                returnedProductCategory.setId(returned_id);
+
+                result.add(returnedProductCategory);
             }
 
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+        return result;
+    }
+
+
+
 }
