@@ -12,7 +12,7 @@ public abstract class DB_connection {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/cartoon_shop";
     private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "6Magos6600";
+    private static final String DB_PASSWORD = "20180917";
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(

@@ -12,7 +12,6 @@ import java.util.List;
 public class ProductCategoryDaoDB extends DB_connection implements ProductCategoryDao {
 
     private static ProductCategoryDaoDB instance = null;
-    private ProductCategory ProductCategory;
 
     public static ProductCategoryDaoDB getInstance() {
         if (instance == null) {
