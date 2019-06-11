@@ -5,6 +5,11 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoDB extends DB_connection implements ProductDao {
@@ -33,7 +38,29 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     @Override
     public Product find(int id) {
-        return null;
+        String query = String.format("SELECT * FROM products WHERE id = %d;", id);
+        Product returnedProduct = null;
+
+        try (Connection connection = getConnection();
+             PreparedStatement pStatement = connection.prepareStatement(query);
+             ResultSet resultSet = pStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+
+                int productId = resultSet.getInt("id");
+                returnedProduct = getProductFromDB(resultSet);
+                returnedProduct.setId(productId);
+
+                System.out.println("The searching based on ID was successful. \n" +
+                        "The following data retrieved from Database: " +
+                        "Product: [" +
+                        returnedProduct.toString() +
+                        "]");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return returnedProduct;
     }
 
     @Override
@@ -44,17 +71,62 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        String query = "SELECT * FROM products";
+        return getFilteredProducts(query);
     }
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        return null;
+        String query = String.format("SELECT * products WHERE id = %d", supplier.getId());
+        return getFilteredProducts(query);
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return null;
+        String query = String.format("SELECT * products WHERE id = %d", productCategory.getId());
+        return getFilteredProducts(query);
+    }
+
+    private Product getProductFromDB(ResultSet resultSet) throws SQLException {
+        String productName = resultSet.getString("name");
+        String productDescription = resultSet.getString("description");
+        float productDefaultPrice = resultSet.getFloat("defaultprice");
+        String productCurrencyString = resultSet.getString("defaultcurrency");
+        int productCategoryId = resultSet.getInt("category_id");
+        int supplierId = resultSet.getInt("supplier_id");
+
+
+        ProductCategory productCategory = ProductCategoryDaoMem.getInstance().find(productCategoryId);
+        Supplier supplier = SupplierDaoMem.getInstance().find(supplierId);
+
+        return new Product(
+                productName,
+                productDefaultPrice,
+                productCurrencyString,
+                productDescription,
+                productCategory,
+                supplier
+        );
+    }
+
+    private List<Product> getFilteredProducts(String query) {
+        List<Product> result = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement pStatement = connection.prepareStatement(query);
+             ResultSet resultSet = pStatement.executeQuery()){
+
+            while(resultSet.next()){
+
+                int productId = resultSet.getInt("id");
+                Product returnedProduct = getProductFromDB(resultSet);
+                returnedProduct.setId(productId);
+                result.add(returnedProduct);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

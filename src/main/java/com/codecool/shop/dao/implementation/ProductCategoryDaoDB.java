@@ -41,9 +41,8 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
         ProductCategory returnedProductCategory = null;
 
         try (Connection connection = getConnection();
-             PreparedStatement pStatement = connection.prepareStatement(query)) {
-
-            ResultSet resultSet = pStatement.executeQuery();
+             PreparedStatement pStatement = connection.prepareStatement(query);
+             ResultSet resultSet = pStatement.executeQuery()) {
 
             while (resultSet.next()) {
 
@@ -91,11 +90,10 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
 
 
         try (Connection connection = getConnection();
-             PreparedStatement pStatement = connection.prepareStatement(query)){
+             PreparedStatement pStatement = connection.prepareStatement(query);
+             ResultSet resultSet = pStatement.executeQuery()){
 
-            ResultSet resultSet = pStatement.executeQuery();
             while(resultSet.next()){
-
 
                 int returned_id = resultSet.getInt("id");
                 String returned_name = resultSet.getString("name");

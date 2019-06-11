@@ -5,8 +5,8 @@ CREATE TABLE products (
     id serial NOT NULL,
     name varchar(100),
     description varchar(250),
-    defaultPrice money,
-    defaultCurrency money,
+    defaultPrice integer,
+    defaultCurrency varchar(250),
     category_id integer,
     supplier_id integer
 );

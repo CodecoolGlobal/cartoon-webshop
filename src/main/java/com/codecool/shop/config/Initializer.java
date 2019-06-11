@@ -73,7 +73,8 @@ public class Initializer implements ServletContextListener {
 
         ProductCategory test = new ProductCategory("TEST", "Fictional characters", "dsn vndsv jkdsjkvndjkvn");
         ProductCategoryDaoDB catDB = ProductCategoryDaoDB.getInstance();
+        ProductDaoDB productDaoDB = ProductDaoDB.getInstance();
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(catDB.getAll());
+        System.out.println(productDaoDB.getAll());
     }
 }
