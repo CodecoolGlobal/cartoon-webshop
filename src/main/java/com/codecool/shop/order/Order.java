@@ -40,7 +40,7 @@ public class Order {
 
                 // if the product is already in the cart, it increases the quantity of the lineitem
                 for (LineItem orderItem: itemList) {
-                    if (orderItem.getProduct().equals(item)) {
+                    if (orderItem.getProduct().getId() == (item.getId())) {
                         orderItem.setQuantity(orderItem.getQuantity() + 1);
                         itemIsAlreadyInCart = true;
                     }
