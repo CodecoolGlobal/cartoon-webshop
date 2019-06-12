@@ -11,8 +11,8 @@ public abstract class DB_connection {
     /*----------------You need to set your db account details here for proper application running---------------------*/
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/cartoon_shop";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "queenofsql";
+    private static final String DB_USER = System.getenv("POSTGRES_DB_USER");
+    private static final String DB_PASSWORD = System.getenv("POSTGRES_DB_PASSWORD");
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
