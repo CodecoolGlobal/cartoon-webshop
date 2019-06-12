@@ -37,6 +37,8 @@ public class CheckoutController extends HttpServlet {
             String param = (String) object;
             String value = req.getParameter(param);
             user.setAttribute(param, value);
+
+            object.equals(object);
         }
 
         Order.getInstance().setUser(user);
