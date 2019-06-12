@@ -1,5 +1,5 @@
 CREATE DATABASE "cartoon_shop"
-    WITH OWNER "postgres"
+    WITH OWNER "lizi"
     ENCODING 'UTF8'
     LC_COLLATE = 'en_US.UTF-8'
     LC_CTYPE = 'en_US.UTF-8';
@@ -11,8 +11,8 @@ CREATE TABLE products (
     id serial NOT NULL,
     name varchar(100),
     description varchar(250),
-    defaultPrice money,
-    defaultCurrency money,
+    defaultPrice integer,
+    defaultCurrency varchar(250),
     category_id integer,
     supplier_id integer
 );
