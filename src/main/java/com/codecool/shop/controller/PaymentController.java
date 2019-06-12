@@ -18,11 +18,10 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String totalPrice = Order.getInstance().getTotalPrice();
-
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
+        String totalPrice = Order.getInstance().getTotalPrice();
         context.setVariable("totalPrice", totalPrice);
 
         engine.process("product/payment.html", context, resp.getWriter());

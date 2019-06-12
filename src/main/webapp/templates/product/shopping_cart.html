@@ -32,7 +32,7 @@
                 <thead class="thead-dark">
                     <th scope="col">Item</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Add / Remove</th>
+                    <th scope="col">Remove / Add</th>
                     <th scope="col">Unit price</th>
                     <th scope="col">Subtotal price</th>
                 </thead>
@@ -41,8 +41,10 @@
                         <td th:text="${item.getProduct().getName()}">Product name</td>
                         <td th:text="${item.getQuantity()}">Product quantity</td>
                         <td>
-                            <a class="btn btn-danger" th:href="@{/shopping-cart(removed-item=${item.getProduct().getId()})}">-</a>
-                            <a class="btn btn-success" th:href="@{/shopping-cart(added-item=${item.getProduct().getId()})}">+</a>
+                            <form action="/shopping-cart" method="post">
+                            <button class="btn btn-danger" name="removed-item" th:value="${item.getProduct().getId()}">-</button>
+                            <button class="btn btn-success" name="added-item" th:value="${item.getProduct().getId()}">+</button>
+                            </form>
                         </td>
                         <td th:text="${item.getProduct().getPrice()}">Unit price</td>
                         <td th:text="${item.getLinePrice()}">Subtotal price</td>
