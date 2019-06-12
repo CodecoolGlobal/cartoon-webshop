@@ -48,15 +48,9 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
 
             while (resultSet.next()) {
 
+                returnedSupplier = getSupplierFromDatabase(resultSet);
+
                 int returnedId = resultSet.getInt("id");
-                String returnedName = resultSet.getString("name");
-                String returnedDescription = resultSet.getString("description");
-
-                returnedSupplier = new Supplier(
-                        returnedName,
-                        returnedDescription
-                );
-
                 returnedSupplier.setId(returnedId);
 
                 System.out.println("The searching based on ID was successful. \n" +
@@ -71,6 +65,8 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
 
         return returnedSupplier;
     }
+
+
 
     @Override
     public void remove(int id) {
@@ -92,15 +88,9 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
 
             while(resultSet.next()){
 
+                Supplier returnedSupplier = getSupplierFromDatabase(resultSet);
+
                 int returnedId = resultSet.getInt("id");
-                String returnedName = resultSet.getString("name");
-                String returnedDescription = resultSet.getString("description");
-
-                Supplier returnedSupplier = new Supplier(
-                        returnedName,
-                        returnedDescription
-                );
-
                 returnedSupplier.setId(returnedId);
 
                 result.add(returnedSupplier);
@@ -110,5 +100,15 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private Supplier getSupplierFromDatabase(ResultSet resultSet) throws SQLException {
+        String returnedName = resultSet.getString("name");
+        String returnedDescription = resultSet.getString("description");
+
+        return new Supplier(
+                returnedName,
+                returnedDescription
+        );
     }
 }
