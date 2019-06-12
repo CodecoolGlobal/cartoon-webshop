@@ -10,6 +10,7 @@ import com.codecool.shop.model.Supplier;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.util.List;
 
 
 @WebListener
@@ -74,9 +75,13 @@ public class Initializer implements ServletContextListener {
         ProductCategory test = new ProductCategory("TEST", "Fictional characters", "dsn vndsv jkdsjkvndjkvn");
         ProductCategoryDaoDB catDB = ProductCategoryDaoDB.getInstance();
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        catDB.add(test);
+//        System.out.println(catDB.getAll());
 
         SupplierDaoDB sDB = SupplierDaoDB.getInstance();
-        Supplier testsupp = sDB.find(1);
-        System.out.println(testsupp);
+        sDB.remove(6);
+        sDB.remove(7);
+        sDB.remove(8);
+        System.out.println(sDB.getAll());
     }
 }

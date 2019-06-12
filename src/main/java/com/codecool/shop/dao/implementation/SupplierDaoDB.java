@@ -81,7 +81,7 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
     @Override
     public List<Supplier> getAll() {
 
-        String query = "SELECT * FROM categories";
+        String query = "SELECT * FROM suppliers";
 
         List<Supplier> result = new ArrayList<>();
 
