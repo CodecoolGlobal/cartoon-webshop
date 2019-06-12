@@ -33,7 +33,7 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
         try (Connection connection = getConnection();
              PreparedStatement pStatement = connection.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS)){
 
-            ResultSet resultSet = pStatement.executeQuery();
+            pStatement.executeUpdate();
             ResultSet generatedKey = pStatement.getGeneratedKeys();
             if(generatedKey.next()){
                 category.setId(generatedKey.getInt(1));
@@ -41,7 +41,6 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(category.getId());
     }
 
     @Override
