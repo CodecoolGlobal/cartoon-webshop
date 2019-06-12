@@ -72,16 +72,17 @@ public class Initializer implements ServletContextListener {
 
         productDataStore.doSort();
 
-        ProductCategory test = new ProductCategory("TEST", "Fictional characters", "dsn vndsv jkdsjkvndjkvn");
-        ProductCategoryDaoDB catDB = ProductCategoryDaoDB.getInstance();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        catDB.add(test);
-//        System.out.println(catDB.getAll());
-
-        SupplierDaoDB sDB = SupplierDaoDB.getInstance();
-        sDB.remove(6);
-        sDB.remove(7);
-        sDB.remove(8);
-        System.out.println(sDB.getAll());
+//        ProductCategory test = new ProductCategory("TEST", "Fictional characters", "dsn vndsv jkdsjkvndjkvn");
+//        ProductCategoryDaoDB catDB = ProductCategoryDaoDB.getInstance();
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+////        catDB.add(test);
+////        System.out.println(catDB.getAll());
+//
+//        SupplierDaoDB sDB = SupplierDaoDB.getInstance();
+//
+//        Supplier supp = new Supplier("akárni", "kit érdekel?");
+//        sDB.add(supp);
+//        System.out.println(supp.getId());
+//        System.out.println(sDB.getAll());
     }
 }

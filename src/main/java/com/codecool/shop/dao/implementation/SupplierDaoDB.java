@@ -3,10 +3,7 @@ package com.codecool.shop.dao.implementation;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +28,18 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
                 "VALUES (DEFAULT, '" + supplier.getName() +
                 "', '" + supplier.getDescription() +
                 "');";
-        super.executeStatement(statement);
 
-        //TODO setID
+        try (Connection connection = getConnection();
+             PreparedStatement pStatement = connection.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS)){
+
+            pStatement.executeUpdate();
+            ResultSet generatedKey = pStatement.getGeneratedKeys();
+            if(generatedKey.next()){
+                supplier.setId(generatedKey.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
