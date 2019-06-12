@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Enumeration;
 
 @WebServlet(urlPatterns = {"/checkout"})
@@ -29,20 +30,30 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User user = new User();
-        Enumeration en = req.getParameterNames();
-
-        while (en.hasMoreElements()) {
-            Object object = en.nextElement();
-            String param = (String) object;
-            String value = req.getParameter(param);
-            user.setAttribute(param, value);
-
-            object.equals(object);
-        }
-
-        Order.getInstance().setUser(user);
+        setUserInOrder(req);
 
         resp.sendRedirect("/payment");
+    }
+
+    private void setUserInOrder(HttpServletRequest req) {
+        User newUser = new User();
+
+        setUserAttributesFromForm(req, newUser);
+
+        Order.getInstance().setUser(newUser);
+    }
+
+    private void setUserAttributesFromForm(HttpServletRequest req, User user) {
+
+        Enumeration formParameterNames = req.getParameterNames();
+
+        while (formParameterNames.hasMoreElements()) {
+            Object nextElement = formParameterNames.nextElement();
+
+            String fieldName = (String) nextElement;
+            String inputByUser = req.getParameter(fieldName);
+            Field field = user.getDeclaredField(fieldName);
+            user.setField(field, inputByUser);
+        }
     }
 }
