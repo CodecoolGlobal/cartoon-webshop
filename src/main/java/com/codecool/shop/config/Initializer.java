@@ -19,7 +19,7 @@ public class Initializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ProductDaoMem productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoDB.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         //setting up a new supplier

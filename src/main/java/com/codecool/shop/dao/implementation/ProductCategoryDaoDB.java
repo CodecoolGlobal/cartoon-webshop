@@ -29,7 +29,18 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
                 "', '" + category.getDepartment() +
                 "', '" + category.getDescription() +
                 "');";
-        super.executeStatement(statement);
+
+        try (Connection connection = getConnection();
+             PreparedStatement pStatement = connection.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS)){
+
+            pStatement.executeUpdate();
+            ResultSet generatedKey = pStatement.getGeneratedKeys();
+            if(generatedKey.next()){
+                category.setId(generatedKey.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
