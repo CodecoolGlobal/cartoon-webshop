@@ -22,7 +22,7 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     @Override
     public void add(Product product) {
-        String statement = "INSERT INTO categories (id, name, description, defaultprice, defaultcurrency, category_id, supplier_id) " +
+        String statement = "INSERT INTO products (id, name, description, defaultprice, defaultcurrency, category_id, supplier_id) " +
                 "VALUES (DEFAULT, '" + product.getName() +
                 "', '" + product.getDescription() +
                 "', '" + product.getDefaultPrice() +
@@ -104,8 +104,8 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
         int supplierId = resultSet.getInt("supplier_id");
 
 
-        ProductCategory productCategory = ProductCategoryDaoMem.getInstance().find(productCategoryId);
-        Supplier supplier = SupplierDaoMem.getInstance().find(supplierId);
+        ProductCategory productCategory = ProductCategoryDaoDB.getInstance().find(productCategoryId);
+        Supplier supplier = SupplierDaoDB.getInstance().find(supplierId);
 
         return new Product(
                 productName,

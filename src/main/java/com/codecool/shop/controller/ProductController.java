@@ -4,9 +4,7 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoDB;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import com.codecool.shop.order.Order;
@@ -26,9 +24,9 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoDB.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoDB.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoDB.getInstance();
 
         // if a product is added to the cart, this adds it to the itemList in Order class
         if (req.getParameter("added-item") != null) {

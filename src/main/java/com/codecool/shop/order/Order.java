@@ -1,7 +1,7 @@
 package com.codecool.shop.order;
 
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoDB;
 import com.codecool.shop.model.Product;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class Order {
 
     public void add(int id){
 
-        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoDB.getInstance();
         List<Product> items = productDataStore.getAll();
 
         for (Product item:items) {
