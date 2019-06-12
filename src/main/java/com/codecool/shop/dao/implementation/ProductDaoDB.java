@@ -33,6 +33,9 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 "', '" + product.getProductCategory().getId() +
                 "', '" + product.getSupplier().getId() +
                 "');";
+
+        // TODO: Frici pls do the ID
+
         super.executeStatement(statement);
     }
 
