@@ -5,10 +5,7 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +31,17 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 "', '" + product.getSupplier().getId() +
                 "');";
 
-        // TODO: Frici pls do the ID
+        try (Connection connection = getConnection();
+             PreparedStatement pStatement = connection.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS)){
 
-        super.executeStatement(statement);
+            pStatement.executeUpdate();
+            ResultSet generatedKey = pStatement.getGeneratedKeys();
+            if(generatedKey.next()){
+                product.setId(generatedKey.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
