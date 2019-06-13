@@ -1,18 +1,20 @@
 package com.codecool.shop.dao.implementation;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 public abstract class DB_connection {
 
-    /*----------------You need to set your db account details here for proper application running---------------------*/
-
-    private static final String DATABASE = "jdbc:postgresql://localhost:5432/cartoon_shop";
-    private static final String DB_USER = System.getenv("POSTGRES_DB_USER");
-    private static final String DB_PASSWORD = System.getenv("POSTGRES_DB_PASSWORD");
+    private static final String DATABASE = "jdbc:postgresql://" + getProperties().getProperty("url") + "/" + getProperties().getProperty("database");
+    private static final String DB_USER = getProperties().getProperty("user");
+    private static final String DB_PASSWORD = getProperties().getProperty("password");
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
@@ -28,5 +30,15 @@ public abstract class DB_connection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Properties getProperties() {
+        Properties properties = new Properties();
+        try {
+            properties.load(Files.newBufferedReader(Paths.get(System.getProperty("user.dir"), "src/main/resources/connection.properties")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
     }
 }
