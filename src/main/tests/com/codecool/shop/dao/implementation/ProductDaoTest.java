@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProductDaoMemTest {
+class ProductDaoTest {
 
     private static ProductDao productDao;
     private ProductCategory testCategory;
