@@ -21,7 +21,6 @@ class SupplierDaoTest {
         return Stream.of(SupplierDaoMem.getInstance(), SupplierDaoDB.getInstance());
     }
 
-
     @ParameterizedTest
     @MethodSource("getSupplierDao")
     public void testIsGetInstanceNotNull(SupplierDao supplierDao) {
@@ -40,15 +39,15 @@ class SupplierDaoTest {
         assertEquals(numberOfSuppliersAfter, numberOfSuppliersBefore + 1);
     }
 
-//    @Disabled
-//    @ParameterizedTest
-//    @MethodSource("getSupplierDao")
-//    public void testIsCorrectSupplierFound(SupplierDao supplierDao) {
-//        Supplier testSupplier = new Supplier("Test find supplier", "This is a test supplier to check if the find method works.");
-//        supplierDao.add(testSupplier);
-//        int id = 0;
-//        assertEquals(testSupplier, supplierDao.find(id));
-//    }
+    @Disabled
+    @ParameterizedTest
+    @MethodSource("getSupplierDao")
+    public void testIsCorrectSupplierFound(SupplierDao supplierDao) {
+        Supplier testSupplier = new Supplier("Test find supplier", "This is a test supplier to check if the find method works.");
+        supplierDao.add(testSupplier);
+        int id = 0;
+        assertEquals(testSupplier, supplierDao.find(id));
+    }
 
     @ParameterizedTest
     @MethodSource("getSupplierDao")

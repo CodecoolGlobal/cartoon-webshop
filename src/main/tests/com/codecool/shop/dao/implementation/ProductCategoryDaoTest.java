@@ -2,54 +2,61 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCategoryDaoTest {
 
-    private static ProductCategoryDao productCategoryDao;
-
-    @AfterAll
-    @Test
-    public static void testAreAllCategoriesReturned() {
+    @Disabled
+    @ParameterizedTest
+    @MethodSource("getCategoryDao")
+    public static void testAreAllCategoriesReturned(ProductCategoryDao productCategoryDao) {
         assertEquals(2, productCategoryDao.getAll().size());
     }
 
-    @BeforeEach
-    private void setup() {
-        productCategoryDao = ProductCategoryDaoMem.getInstance();
+    private static Stream getCategoryDao() {
+        return Stream.of(ProductCategoryDaoMem.getInstance(), ProductCategoryDaoDB.getInstance());
     }
 
-    @Test
-    public void testIsGetInstanceNotNull() {
-        assertNotNull(ProductCategoryDaoMem.getInstance());
+    @ParameterizedTest
+    @MethodSource("getCategoryDao")
+    public void testIsGetInstanceNotNull(ProductCategoryDao productCategoryDao) {
+        ProductCategoryDao instance = (productCategoryDao instanceof ProductCategoryDaoMem) ? ProductCategoryDaoMem.getInstance() : ProductCategoryDaoDB.getInstance();
+        assertNotNull(instance);
     }
 
-    @Test
-    public void testIsCategoryAdded() {
-        ProductCategory testCategory = new ProductCategory("Test1", "", "");
+    @ParameterizedTest
+    @MethodSource("getCategoryDao")
+    public void testIsCategoryAdded(ProductCategoryDao productCategoryDao) {
+        ProductCategory testCategory = new ProductCategory("Test add category", "","This is a test category to check if the add method works.");
+        int numberOfCategoriesBefore = productCategoryDao.getAll().size();
         productCategoryDao.add(testCategory);
-        testCategory.setId(1);
-        assertTrue(productCategoryDao.getAll().contains(testCategory));
+        int numberOfCategoriesAfter = productCategoryDao.getAll().size();
+        assertEquals(numberOfCategoriesAfter, numberOfCategoriesBefore + 1);
     }
 
-    @Test
-    public void testIsCorrectCategoryFound() {
+    @Disabled
+    @ParameterizedTest
+    @MethodSource("getCategoryDao")
+    public void testIsCorrectCategoryFound(ProductCategoryDao productCategoryDao) {
         ProductCategory testCategory = new ProductCategory("Test3", "", "");
         productCategoryDao.add(testCategory);
         testCategory.setId(2);
         assertEquals(testCategory, productCategoryDao.find(2));
     }
 
-    @Test
-    public void testIsCategoryRemoved() {
-        ProductCategory testCategory = new ProductCategory("Test2", "", "");
+    @ParameterizedTest
+    @MethodSource("getCategoryDao")
+    public void testIsCategoryRemoved(ProductCategoryDao productCategoryDao) {
+        ProductCategory testCategory = new ProductCategory("Test supplier","", "This is a test supplier.");
         productCategoryDao.add(testCategory);
-        testCategory.setId(3);
-        productCategoryDao.remove(3);
+        testCategory.setId(999);
+        productCategoryDao.remove(999);
         assertFalse(productCategoryDao.getAll().contains(testCategory));
     }
 
