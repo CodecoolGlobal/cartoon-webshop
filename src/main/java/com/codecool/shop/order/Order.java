@@ -30,29 +30,28 @@ public class Order {
     public void add(int id){
 
         ProductDao productDataStore = ProductDaoDB.getInstance();
-        List<Product> items = productDataStore.getAll();
 
-        for (Product item:items) {
+        Product item = productDataStore.find(id);
 
-            // getting the proper Product (by id)
-            if (item.getId() == id) {
-                boolean itemIsAlreadyInCart = false;
+        // getting the proper Product (by id)
+        if (item.getId() == id) {
+            boolean itemIsAlreadyInCart = false;
 
-                // if the product is already in the cart, it increases the quantity of the lineitem
-                for (LineItem orderItem: itemList) {
-                    if (orderItem.getProduct().getId() == (item.getId())) {
-                        orderItem.setQuantity(orderItem.getQuantity() + 1);
-                        itemIsAlreadyInCart = true;
-                    }
-                }
-
-                // if the product isn't in the cart, it adds the lineitem to it
-                if (!itemIsAlreadyInCart) {
-                    LineItem lineItem = new LineItem(item);
-                    itemList.add(lineItem);
+            // if the product is already in the cart, it increases the quantity of the lineitem
+            for (LineItem orderItem: itemList) {
+                if (orderItem.getProduct().getId() == (item.getId())) {
+                    orderItem.setQuantity(orderItem.getQuantity() + 1);
+                    itemIsAlreadyInCart = true;
                 }
             }
+
+            // if the product isn't in the cart, it adds the lineitem to it
+            if (!itemIsAlreadyInCart) {
+                LineItem lineItem = new LineItem(item);
+                itemList.add(lineItem);
+            }
         }
+
     }
 
     public void remove(int id){
