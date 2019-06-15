@@ -59,11 +59,6 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 returnedProduct = getProductFromDB(resultSet);
                 returnedProduct.setId(productId);
 
-                System.out.println("The searching based on ID was successful. \n" +
-                        "The following data retrieved from Database: " +
-                        "Product: [" +
-                        returnedProduct.toString() +
-                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -139,7 +134,11 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     public List<Product> searchByExpression(String searchedExpression){
         String concatenatedExpression = '%' + searchedExpression + '%';
-        String query = String.format("SELECT * FROM products WHERE description ILIKE('%s');", concatenatedExpression);
+        String query = String.format(
+                "SELECT * FROM products WHERE description ILIKE('%s')" +
+                "UNION " +
+                "SELECT * FROM products WHERE name ILIKE('%s');",
+                concatenatedExpression, concatenatedExpression);
         return getFilteredProducts(query);
     }
 }

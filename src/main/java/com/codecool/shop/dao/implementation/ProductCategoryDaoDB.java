@@ -71,11 +71,6 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
 
                 /*Creating logs for server (not mandatory)*/
 
-                System.out.println("The searching based on ID was successful. \n" +
-                        "The following data retrieved from Database: " +
-                        "Product Category: [" +
-                        returnedProductCategory.toString() +
-                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();
