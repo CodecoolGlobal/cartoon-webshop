@@ -39,7 +39,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <div class="dropdown">
+                <div class="dropdown moreMarginRight">
                     <button class="btn btn-secondary dropdown-toggle"
                             type="button" id="filterBySupplier"
                             data-toggle="dropdown"
@@ -58,6 +58,16 @@
                         </a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline moreMarginRight">
+                    <input class="form-control mr-sm-2"
+                           type="search"
+                           placeholder="Search"
+                           aria-label="Search"
+                           name="search_expression">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </li>
         </ul>
         <span class="navbar-text" th:text="'Number of items: ' + ${numOfCartItems}"></span>
