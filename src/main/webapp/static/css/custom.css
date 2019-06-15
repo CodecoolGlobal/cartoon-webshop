@@ -89,3 +89,7 @@ body {
 .moreMarginRight {
     margin-right: 25px;
 }
+
+.backButtonColorizer {
+    background-color: chartreuse;
+}
