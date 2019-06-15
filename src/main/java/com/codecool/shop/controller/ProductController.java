@@ -72,6 +72,11 @@ public class ProductController extends HttpServlet {
             filteredProducts = productDataStore.getBy(filteredSupplier);
         }
 
+        else if(req.getParameter("search_expression") != null){
+            String searchedExpression = req.getParameter("search_expression");
+            filteredProducts = productDataStore.searchByExpression(searchedExpression);
+        }
+
         else{
             filteredProducts = productDataStore.getAll();
         }
