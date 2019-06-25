@@ -102,3 +102,9 @@ body {
 #index_navbar {
     background-color: darkred;
 }
+
+.dropdown-button {
+    color:#fff;
+    background-color:#dc3545;
+    border-color:#dc3545
+}
