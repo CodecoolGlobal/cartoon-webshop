@@ -9,12 +9,10 @@
         </encoder>
     </appender>
 
-    <appender name="FILE-WARNS" class="ch.qos.logback.core.FileAppender">
+    <appender name="FILE-FROM-WARNS" class="ch.qos.logback.core.FileAppender">
         <file>warnLogs.log</file>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>WARN</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
         </filter>
         <encoder>
             <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
@@ -46,7 +44,7 @@
 
     <root level="debug">
         <appender-ref ref="STDOUT-FROM-INFO" />
-        <appender-ref ref="FILE-WARNS" />
+        <appender-ref ref="FILE-FROM-WARNS" />
         <appender-ref ref="FILE-DEBUGS" />
     </root>
 
