@@ -2,10 +2,13 @@ package com.codecool.shop.config;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.*;
+import com.codecool.shop.dao.implementation.DB.ProductCategoryDaoDB;
+import com.codecool.shop.dao.implementation.DB.ProductDaoDB;
+import com.codecool.shop.dao.implementation.DB.SupplierDaoDB;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,8 +16,6 @@ import javax.servlet.annotation.WebListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-
 
 @WebListener
 public class Initializer implements ServletContextListener {
@@ -83,8 +84,7 @@ public class Initializer implements ServletContextListener {
             productDataStore.add(new Product("Toy Story", 750, "USD", "Toy Story is set in a world where toys come alive. Andy Davis ''s favorite toy is a pull-string cowboy doll named Woody, who worries about being replaced by Andy''s newest toy, a space ranger named Buzz Lightyear.", group, pixar));
         }
 
-//        productDataStore.doSort();
-
+//        productDataStore.doSort()
 
 
 
