@@ -5,7 +5,7 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProductDaoDB extends DB_connection implements ProductDao {
 
-    private static final Logger logger = Logger.getLogger(ProductDaoDB.class);
+//    private static final Logger logger = Logger.getLogger(ProductDaoDB.class);
     private static ProductDaoDB instance = null;
 
     public static ProductDaoDB getInstance() {
@@ -62,11 +62,11 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 returnedProduct = getProductFromDB(resultSet);
                 returnedProduct.setId(productId);
 
-                logger.debug("The searching based on ID was successful. \n" +
-                        "The following data retrieved from Database: " +
-                        "Product: [" +
-                        returnedProduct.toString() +
-                        "]");
+//                logger.debug("The searching based on ID was successful. \n" +
+//                        "The following data retrieved from Database: " +
+//                        "Product: [" +
+//                        returnedProduct.toString() +
+//                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();

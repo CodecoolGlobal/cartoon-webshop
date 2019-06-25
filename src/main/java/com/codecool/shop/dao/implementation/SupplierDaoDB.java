@@ -59,11 +59,11 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
                 int returnedId = resultSet.getInt("id");
                 returnedSupplier.setId(returnedId);
 
-                System.out.println("The searching based on ID was successful. \n" +
-                        "The following data retrieved from Database: " +
-                        "Supplier: [" +
-                        returnedSupplier.toString() +
-                        "]");
+//                System.out.println("The searching based on ID was successful. \n" +
+//                        "The following data retrieved from Database: " +
+//                        "Supplier: [" +
+//                        returnedSupplier.toString() +
+//                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();

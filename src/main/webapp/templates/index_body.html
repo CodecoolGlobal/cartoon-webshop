@@ -11,7 +11,7 @@
 
 
     <!-- NAV-BAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-5" id="index_navbar">
         <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item moreMarginRight">
@@ -60,6 +60,27 @@
                     </div>
                 </li>
             </ul>
+
+            <span class="my-2 my-lg-0">
+                    <div class="dropdown  moreMarginRight">
+                        <button class="btn btn-secondary dropdown-toggle"
+                                type="button" id="theme"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">Theme
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a
+                                    class="dropdown-item"
+                                    th:href="@{/(theme=light)}">Light
+                            </a>
+                            <a
+                                    class="dropdown-item"
+                                    th:href="@{/(theme=dark)}">Dark
+                            </a>
+                        </div>
+                    </div>
+            </span>
             <span class="navbar-text" th:text="'Number of items: ' + ${numOfCartItems}"></span>
         </div>
     </nav>

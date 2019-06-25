@@ -82,7 +82,9 @@
 }
 
 body {
+    /*TODO*/
     background: url('/static/img/footer_2.jpg') no-repeat center bottom fixed;
+    background-color: black;
     width: 100%;
 }
 
@@ -91,6 +93,12 @@ body {
 }
 
 
+.add_to_cart_button{color:#fff;background-color:#dc3545;border-color:#dc3545}
+
+.add_to_cart_button:hover{color:#fff;background-color:#c82333;border-color:#bd2130}
+
+.add_to_cart_button.focus,.add_to_cart_button:focus{box-shadow:0 0 0 .2rem rgba(225,83,97,.5)}
+
 #index_navbar {
-    background-color: #343a40;
+    background-color: darkred;
 }
