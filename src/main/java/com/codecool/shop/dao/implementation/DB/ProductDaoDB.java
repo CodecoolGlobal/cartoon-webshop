@@ -51,12 +51,6 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     @Override
     public Product find(int id) {
-        //      Testing enabled logging levels
-        logger.trace("trace");
-        logger.debug("debug");
-        logger.info("info");
-        logger.warn("warn");
-        logger.error("error");
 
         String query = String.format("SELECT * FROM products WHERE id = %d;", id);
         Product returnedProduct = null;
