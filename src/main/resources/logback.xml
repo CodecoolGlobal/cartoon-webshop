@@ -21,13 +21,24 @@
         </encoder>
     </appender>
 
-    <appender name="FILE-DEBUGS" class="ch.qos.logback.core.FileAppender">
+    <appender name="FILE-DEBUGS" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>debugLogs.log</file>
+
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>DEBUG</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>debugLogs%i.log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>2</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>100KB</maxFileSize>
+        </triggeringPolicy>
         <encoder>
             <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
         </encoder>
