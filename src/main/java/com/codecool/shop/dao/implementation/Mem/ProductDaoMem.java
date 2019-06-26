@@ -82,4 +82,8 @@ public class ProductDaoMem implements ProductDao {
         }
     }
 
+    @Override
+    public List<Product> searchByExpression(String searchedExpression) {
+        return null;
+    }
 }

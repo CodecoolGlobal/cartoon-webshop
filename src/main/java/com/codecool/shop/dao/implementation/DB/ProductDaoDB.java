@@ -147,4 +147,13 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
         return result;
     }
 
+    public List<Product> searchByExpression(String searchedExpression){
+        String concatenatedExpression = '%' + searchedExpression + '%';
+        String query = String.format(
+                "SELECT * FROM products WHERE description ILIKE('%1$s')" +
+                "UNION " +
+                "SELECT * FROM products WHERE name ILIKE('%1$s');",
+                concatenatedExpression);
+        return getFilteredProducts(query);
+    }
 }
