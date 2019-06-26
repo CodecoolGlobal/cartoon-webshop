@@ -12,8 +12,6 @@
 
     <!-- ITEMS -->
 
-
-
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
             <div th:switch="${session.theme}" class="card">
@@ -38,7 +36,7 @@
                     </div>
                     <div class="card-text">
                         <form action="/" method="post">
-                            <button class="add_to_cart_button btn btn-success"
+                            <button class="submit-button btn btn-success"
                                     name="added-item" th:value="${prod.getId()}">Add to cart</button>
                         </form>
                     </div>
