@@ -1,6 +1,25 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Bootstrap components -->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Latest compiled and minified Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- End of Bootstrap components -->
     <div th:replace="header.html :: copy"></div>
 </head>
 
@@ -8,58 +27,105 @@
 
 <div th:insert="body.html :: copy"></div>
 
-<div class="container">
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+            <div id="pay-invoice" class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 class="text-center">Pay Invoice</h3>
+                    </div>
+                    <hr>
+                    <article class="card">
+                        <div>
+                            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                        <i class="fa fa-credit-card"></i>Credit/Debit Card</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                                        <i class="fa fa-paypal"></i> PayPal</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-bitcoin">
+                                        <i class="fa fa-btc"></i> BitCoin</a></li>
 
-    <div class="card p-3 bg-light">
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="nav-tab-card">
+                                    <form class="form-horizontal" role="form" action="/payment" method="post">
 
-    <h4>Payment</h4>
-
-    <strong><p th:text="'Total price: ' + ${totalPrice}">Total price</p></strong>
-
-
-
-    <!-- CREDIT CARD FORM-->
-
-    <form class="form-horizontal" role="form" action="/payment" method="post">
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="card-holder-name"
-                           id="card-holder-name" placeholder="Card Holder's Name" required="required">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="card-holder-name"
+                                                       id="card-holder-name" placeholder="Card Holder's Name" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="card-number">Card Number</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" name="card-number"
+                                                       id="card-number" placeholder="Debit/Credit Card Number" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="expiration">Expiration Date</label>
+                                            <div class="col-sm-9">
+                                                <input type="month" class="form-control" name="expiration"
+                                                       id="expiration" placeholder="MM / YY" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
+                                            <div class="col-sm-4">
+                                                <input type="password" class="form-control" name="cvv"
+                                                       id="cvv" placeholder="Security Code" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-9">
+                                                <button type="submit" class="btn btn-success" th:text="'Pay: ' + ${totalPrice}">Pay Now</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- tab-pane//-->
+                                <div class="tab-pane fade" id="nav-tab-paypal">
+                                    <div id="paypal-button-container"></div>
+                                    <hr>
+                                    <p><strong>Note:</strong> The following link is going to redirect you to a PayPal sandbox page</p>
+                                    <p><strong>Do not give any valid card details!</strong></p>
+                                </div>
+                                <div class="tab-pane fade" id="nav-tab-bitcoin">
+                                    <div class="row mx-0 pt-5 d-flex justify-content-center">
+                                        <div class="card shadow-lg">
+                                            <div class="card-header card-header-divider text-center pt-4"> <img src="https://apirone.com/static/promo/bitcoin_logo_vector.svg" class="img-fluid" style="max-height: 42px;" width="205" alt=""><br>
+                                                <img src="https://apirone.com/api/v1/qr?message=1DonateWffyhwAjskoEwXt83pHZxhLTr8H&format=svg" style="max-width: 190px;" alt=""> </div>
+                                            <div class="card-body px-0">
+                                                <p class="text-center"><small><strong>1DonateWffyhwAjskoEwXt83pHZxhLTr8H</strong></small></p>
+                                                <p class="text-muted text-center">Scan QR code and top-up your<br>
+                                                    Bitcoin balance for any amount.<br>
+                                                    Payment will be credited after 1 confirmation.<br>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="card-number">Card Number</label>
-                <div class="col-sm-9">
-                    <input type="number" class="form-control" name="card-number"
-                           id="card-number" placeholder="Debit/Credit Card Number" required="required">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="expiration">Expiration Date</label>
-                <div class="col-sm-9">
-                    <input type="month" class="form-control" name="expiration"
-                           id="expiration" placeholder="MM / YY" required="required">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
-                <div class="col-sm-3">
-                    <input type="password" class="form-control" name="cvv"
-                           id="cvv" placeholder="Security Code" required="required">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" class="btn btn-success">Pay Now</button>
-                </div>
-            </div>
-    </form>
+        </div>
     </div>
 </div>
 
+
 <div th:replace="footer.html :: copy"></div>
 
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<script src="/static/js/paypal.js"></script>
 </body>
 </html>
+
+
+

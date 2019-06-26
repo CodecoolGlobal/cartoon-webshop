@@ -1,6 +1,8 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.DB.SupplierDaoDB;
+import com.codecool.shop.dao.implementation.Mem.SupplierDaoMem;
 import com.codecool.shop.model.Supplier;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;

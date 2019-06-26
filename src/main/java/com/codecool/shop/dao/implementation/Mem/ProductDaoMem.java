@@ -1,4 +1,4 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.Mem;
 
 
 import com.codecool.shop.dao.ProductDao;
@@ -82,4 +82,8 @@ public class ProductDaoMem implements ProductDao {
         }
     }
 
+    @Override
+    public List<Product> searchByExpression(String searchedExpression) {
+        return null;
+    }
 }
