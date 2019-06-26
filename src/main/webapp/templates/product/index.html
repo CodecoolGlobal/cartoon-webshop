@@ -11,30 +11,61 @@
 <div class="container">
 
     <!-- ITEMS -->
-    <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
-            <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff"
-                     th:attr="src='/static/img/product_' + ${prod.id} + '.png'"
-                     alt="" />
-                <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+
+    <div th:switch="${session.theme}">
+
+        <div th:case="'light'" id="products" class="row">
+            <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
+                <div class="card">
+                    <img class="" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/product_' + ${prod.id} + '.png'"
+                         alt="" />
+                    <div class="card-header">
+                        <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
                     </div>
-                    <div class="card-text">
-                        <form action="/" method="post">
-                            <button class="add_to_cart_button btn btn-success"
-                                    name="added-item" th:value="${prod.getId()}">Add to cart</button>
-                        </form>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <form action="/" method="post">
+                                <button class="add_to_cart_button btn btn-success"
+                                        name="added-item" th:value="${prod.getId()}">Add to cart</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div th:case="'dark'" id="products" class="row">
+            <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
+                <div class="card">
+                    <img class="" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/static/img/dark_product_' + ${prod.id} + '.png'"
+                         alt="" />
+                    <div class="card-header">
+                        <h4 class="card-title" th:text="${prod.name}">Product name</h4>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <form action="/" method="post">
+                                <button class="add_to_cart_button btn btn-success"
+                                        name="added-item" th:value="${prod.getId()}">Add to cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
 </div>
 

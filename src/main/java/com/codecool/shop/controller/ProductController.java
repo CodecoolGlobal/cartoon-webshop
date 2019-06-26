@@ -39,8 +39,7 @@ public class ProductController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-        HttpSession session = req.getSession(true);
-        changeTheme(req, session);
+        changeTheme(req);
 
         List<Product> filteredProducts = filterProducts(req);
         context.setVariable("products", filteredProducts);
@@ -98,10 +97,12 @@ public class ProductController extends HttpServlet {
         }
     }
 
-    private void changeTheme(HttpServletRequest req, HttpSession session) {
+    private void changeTheme(HttpServletRequest req) {
 
         //TODO
-        session.setAttribute("theme", "light");
+
+
+        HttpSession session = req.getSession(true);
 
         if(req.getParameter("theme") != null){
             session.setAttribute("theme", req.getParameter("theme"));
