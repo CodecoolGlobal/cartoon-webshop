@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 
 @WebListener
 public class Initializer implements ServletContextListener {
@@ -86,11 +87,10 @@ public class Initializer implements ServletContextListener {
         String content = null;
         try {
             content = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir"), "src/main/scripts/resetDB.sql")));
+            logger.info("Database has been reset successfully.");
         } catch (IOException e) {
-            logger.error("Error during reading the SQL sript for reseting the database.", e.getStackTrace());
-            e.printStackTrace();
+            logger.error("Error during reading the SQL script for reseting the database {}", e.getStackTrace());
         }
         ProductDaoDB.getInstance().executeStatement(content);
-        logger.info("Database has been reset successfully.");
     }
 }

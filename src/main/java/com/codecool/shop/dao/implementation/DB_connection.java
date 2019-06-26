@@ -1,5 +1,8 @@
 package com.codecool.shop.dao.implementation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,6 +14,7 @@ import java.util.Properties;
 
 
 public abstract class DB_connection {
+    private static final Logger logger = LoggerFactory.getLogger(DB_connection.class);
 
     private static final String DATABASE = "jdbc:postgresql://" + getProperties().getProperty("url") + "/" + getProperties().getProperty("database");
     private static final String DB_USER = getProperties().getProperty("user");
@@ -27,8 +31,9 @@ public abstract class DB_connection {
         try(Connection connection = getConnection();
             PreparedStatement pStatement =connection.prepareStatement(SQL_Statement)) {
                         pStatement.execute();
+                        logger.debug("SQL statement: {} executed.", SQL_Statement);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error during execution of SQL statement: {} \n Stack: {}", SQL_Statement, e.getStackTrace());
         }
     }
 
@@ -36,8 +41,9 @@ public abstract class DB_connection {
         Properties properties = new Properties();
         try {
             properties.load(Files.newBufferedReader(Paths.get(System.getProperty("user.dir"), "src/main/resources/connection.properties")));
+            logger.info("Loading properties file for database was successful.");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Loading properties file for database was unsuccessful {}", e.getStackTrace());
         }
         return properties;
     }
