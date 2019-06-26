@@ -1,9 +1,13 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.DB;
 
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.DB_connection;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +15,7 @@ import java.util.List;
 
 public class ProductDaoDB extends DB_connection implements ProductDao {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoDB.class);
     private static ProductDaoDB instance = null;
 
     public static ProductDaoDB getInstance() {
@@ -46,6 +51,7 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
 
     @Override
     public Product find(int id) {
+
         String query = String.format("SELECT * FROM products WHERE id = %d;", id);
         Product returnedProduct = null;
 
@@ -59,6 +65,11 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 returnedProduct = getProductFromDB(resultSet);
                 returnedProduct.setId(productId);
 
+                logger.debug("The searching based on ID was successful. \n" +
+                        "The following data retrieved from Database: " +
+                        "Product: [" +
+                        returnedProduct.toString() +
+                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();

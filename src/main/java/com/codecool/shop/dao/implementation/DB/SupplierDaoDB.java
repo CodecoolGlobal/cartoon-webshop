@@ -1,7 +1,10 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.DB;
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.DB_connection;
 import com.codecool.shop.model.Supplier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ import java.util.List;
 
 public class SupplierDaoDB extends DB_connection implements SupplierDao {
 
-
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoDB.class);
     private static SupplierDaoDB instance = null;
 
     private SupplierDaoDB() {
@@ -59,6 +62,11 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
                 int returnedId = resultSet.getInt("id");
                 returnedSupplier.setId(returnedId);
 
+                logger.debug("The searching based on ID was successful. \n" +
+                        "The following data retrieved from Database: " +
+                        "Supplier: [" +
+                        returnedSupplier.toString() +
+                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();

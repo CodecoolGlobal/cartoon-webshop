@@ -1,7 +1,7 @@
 package com.codecool.shop.order;
 
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.implementation.ProductDaoDB;
+import com.codecool.shop.dao.implementation.DB.ProductDaoDB;
 import com.codecool.shop.model.Product;
 
 import java.util.ArrayList;

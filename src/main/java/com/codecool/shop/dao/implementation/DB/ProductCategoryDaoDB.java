@@ -1,8 +1,11 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.DB;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 
+import com.codecool.shop.dao.implementation.DB_connection;
 import com.codecool.shop.model.ProductCategory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.*;
@@ -11,6 +14,7 @@ import java.util.List;
 
 public class ProductCategoryDaoDB extends DB_connection implements ProductCategoryDao {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductDaoDB.class);
     private static ProductCategoryDaoDB instance = null;
 
     public static ProductCategoryDaoDB getInstance() {
@@ -71,6 +75,11 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
 
                 /*Creating logs for server (not mandatory)*/
 
+                logger.debug("The searching based on ID was successful. \n" +
+                        "The following data retrieved from Database: " +
+                        "Product Category: [" +
+                        returnedProductCategory.toString() +
+                        "]");
             }
         } catch (SQLException e) {
             e.printStackTrace();
