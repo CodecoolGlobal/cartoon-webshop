@@ -94,3 +94,9 @@ body {
 #index_navbar, #navbar {
     background-color: #343a40;
 }
+
+#footer {
+    background-color: #343a40;
+    color: white;
+}
+

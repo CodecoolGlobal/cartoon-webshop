@@ -82,8 +82,7 @@
 }
 
 body {
-    /*!*TODO*!*/
-    /*background: url('/static/img/footer_2.jpg') no-repeat center bottom fixed;*/
+    background: url('/static/img/dark_footer_2.png') no-repeat center bottom fixed;
     background-color: black;
     width: 100%;
 }
@@ -121,4 +120,9 @@ body {
 }
 .bootstrap-button.focus {
     box-shadow:0 0 0 .2rem rgba(248,249,250,.5)
+}
+
+#footer {
+    background-color: darkred;
+    color: white;
 }
