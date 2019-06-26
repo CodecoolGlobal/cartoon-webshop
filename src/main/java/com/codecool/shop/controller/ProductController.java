@@ -93,9 +93,10 @@ public class ProductController extends HttpServlet {
 
     private void changeTheme(HttpServletRequest req, HttpSession session) {
 
-        if(req.getParameter("theme") == null){
-            session.setAttribute("theme", "light");
-        } else {
+        //TODO
+        session.setAttribute("theme", "light");
+
+        if(req.getParameter("theme") != null){
             session.setAttribute("theme", req.getParameter("theme"));
         }
     }

@@ -10,6 +10,7 @@ import com.codecool.shop.model.Supplier;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -82,10 +83,6 @@ public class Initializer implements ServletContextListener {
             productDataStore.add(new Product("Timon", 75, "USD", "Timon is a wisecracking meerkat and the best friend of Pumbaa, a warthog.", sidekick, disney));
             productDataStore.add(new Product("Toy Story", 750, "USD", "Toy Story is set in a world where toys come alive. Andy Davis ''s favorite toy is a pull-string cowboy doll named Woody, who worries about being replaced by Andy''s newest toy, a space ranger named Buzz Lightyear.", group, pixar));
         }
-
-//        productDataStore.doSort();
-
-
 
 
     }
