@@ -112,3 +112,13 @@ body {
 #index_navbar, navbar {
     background-color: darkred;
 }
+
+.bootstrap-button {
+    color:#f8f9fa;border-color:#f8f9fa;
+}
+.bootstrap-button:hover, .bootstrap-button:active {
+    color:#212529;background-color:#f8f9fa;border-color:#f8f9fa
+}
+.bootstrap-button.focus {
+    box-shadow:0 0 0 .2rem rgba(248,249,250,.5)
+}
