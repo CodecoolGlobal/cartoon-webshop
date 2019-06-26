@@ -15,11 +15,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
 
 @WebListener
@@ -89,7 +87,7 @@ public class Initializer implements ServletContextListener {
         String content = null;
         try {
             content = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir"), "src/main/scripts/resetDB.sql")));
-            logger.info("Database has been reset successfully.");
+            logger.info("SQL script read to reset database.");
         } catch (IOException e) {
             logger.error("Error during reading the SQL script for reseting the database {}", e.getStackTrace());
         }

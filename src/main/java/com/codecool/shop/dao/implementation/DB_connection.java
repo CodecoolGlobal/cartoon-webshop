@@ -16,9 +16,10 @@ import java.util.Properties;
 public abstract class DB_connection {
     private static final Logger logger = LoggerFactory.getLogger(DB_connection.class);
 
-    private static final String DATABASE = "jdbc:postgresql://" + getProperties().getProperty("url") + "/" + getProperties().getProperty("database");
-    private static final String DB_USER = getProperties().getProperty("user");
-    private static final String DB_PASSWORD = getProperties().getProperty("password");
+    private static Properties properties = getProperties();
+    private static final String DATABASE = "jdbc:postgresql://" + properties.getProperty("url") + "/" + properties.getProperty("database");
+    private static final String DB_USER = properties.getProperty("user");
+    private static final String DB_PASSWORD = properties.getProperty("password");
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(

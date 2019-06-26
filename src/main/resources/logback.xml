@@ -5,7 +5,7 @@
             <level>INFO</level>
         </filter>
         <encoder>
-            <pattern>%level %date [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+            <pattern>[%level] %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -30,7 +30,7 @@
             <maxIndex>2</maxIndex>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>100KB</maxFileSize>
+            <maxFileSize>500KB</maxFileSize>
         </triggeringPolicy>
         <encoder>
             <pattern>%level %date [%thread] %logger{10} [%file:%line] %msg%n</pattern>

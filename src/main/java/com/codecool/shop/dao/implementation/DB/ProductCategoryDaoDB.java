@@ -43,8 +43,9 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
             if(generatedKey.next()){
                 category.setId(generatedKey.getInt(1));
             }
+            logger.debug("ProductCategory [{}] was added to database successfully.", category);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error during adding ProductCategories with query {} \n Stack: {}", statement, e.getStackTrace());
         }
     }
 
@@ -77,14 +78,14 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
                 /*Creating logs for server (not mandatory)*/
 
                 logger.debug(
-                        "The searching based on {} was successful. \n" +
-                        "The following data retrieved from Database: ProductCategory: [{}]",
-                        returned_id,
-                        returnedProductCategory
+                    "The searching based on {} was successful. \n" +
+                    "The following data retrieved from Database: ProductCategory: [{}]",
+                    returned_id,
+                    returnedProductCategory
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Finding ProductCategory with id {} in database was unsuccessful. Stack: {}", id, e.getStackTrace());
         }
 
         return returnedProductCategory;
@@ -125,12 +126,13 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
                 returnedProductCategory.setId(returned_id);
 
                 result.add(returnedProductCategory);
+                logger.debug("Getting ProductCategory [{}] from database was successful.", returnedProductCategory);
             }
+            logger.info("All ProductCategories were successfully got from database.");
 
         } catch (Exception e) {
-            logger.error("Error during getting all ProductCategories from the database {}", e.getStackTrace());
+            logger.error("Error during getting all ProductCategories from the database. \n Stack: {}", e.getStackTrace());
         }
-        logger.info("All ProductCategories were successfully got from database.");
         return result;
     }
 

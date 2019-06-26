@@ -47,7 +47,7 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
             }
             logger.debug("Product [{}] was successfully added to database.", product);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Adding Product [{}] to database was unsuccessful. \n Stack: ", product, e.getStackTrace());
         }
     }
 
@@ -68,10 +68,10 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 returnedProduct.setId(productId);
 
                 logger.debug(
-                        "The searching based on {} was successful. \n" +
-                        "The following data retrieved from Database: Product: [{}]",
-                        productId,
-                        returnedProduct
+                    "The searching based on id {} was successful. \n" +
+                    "The following data retrieved from Database: Product: [{}]",
+                    productId,
+                    returnedProduct
                 );
             }
         } catch (SQLException e) {
@@ -139,11 +139,12 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 Product returnedProduct = getProductFromDB(resultSet);
                 returnedProduct.setId(productId);
                 result.add(returnedProduct);
+                logger.debug("Getting Product [{}] from database was successful.", returnedProduct);
             }
+            logger.info("Getting filtered products from database was successful");
         } catch (Exception e) {
-            logger.error("Error during filtering products with query {} \n Stack: {}",query, e.getStackTrace());
+            logger.error("Error during filtering products with query {} \n Stack: {}", query, e.getStackTrace());
         }
-        logger.info("Getting filtered products from database was successful");
         return result;
     }
 
