@@ -32,9 +32,9 @@ public abstract class DB_connection {
         try(Connection connection = getConnection();
             PreparedStatement pStatement =connection.prepareStatement(SQL_Statement)) {
                         pStatement.execute();
-                        logger.debug("SQL statement: {} executed.", SQL_Statement);
+                        logger.debug("\n   SQL statement:\n   {}\n   executed.", SQL_Statement);
         } catch (SQLException e) {
-            logger.error("Error during execution of SQL statement: {} \n Stack: {}", SQL_Statement, e.getStackTrace());
+            logger.error("\n   Error during execution of SQL statement: {} \n Stack: {}", SQL_Statement, e.getStackTrace());
         }
     }
 
@@ -42,9 +42,9 @@ public abstract class DB_connection {
         Properties properties = new Properties();
         try {
             properties.load(Files.newBufferedReader(Paths.get(System.getProperty("user.dir"), "src/main/resources/connection.properties")));
-            logger.info("Loading properties file for database was successful.");
+            logger.info("\n   Loading properties file for database was successful.");
         } catch (IOException e) {
-            logger.error("Loading properties file for database was unsuccessful {}", e.getStackTrace());
+            logger.error("\n   Loading properties file for database was unsuccessful {}", e.getStackTrace());
         }
         return properties;
     }

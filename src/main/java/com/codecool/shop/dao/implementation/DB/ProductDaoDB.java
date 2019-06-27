@@ -21,7 +21,7 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
     public static ProductDaoDB getInstance() {
         if (instance == null) {
             instance = new ProductDaoDB();
-            logger.debug("Singleton instance of {} created", instance);
+            logger.debug("\n   Singleton instance of {} created", instance);
         }
         return instance;
     }
@@ -68,8 +68,8 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 returnedProduct.setId(productId);
 
                 logger.debug(
-                    "The searching based on id {} was successful. \n" +
-                    "   The following data retrieved from Database: Product: [{}]",
+                    "\n   The searching based on id {} was successful." +
+                    "\n   The following data retrieved from Database:\n   Product: [{}]",
                     productId,
                     returnedProduct
                 );
@@ -141,9 +141,9 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 result.add(returnedProduct);
                 logger.debug("\n    Getting Product [{}] \n   from database was successful.", returnedProduct);
             }
-            logger.info("Getting filtered products from database was successful");
+            logger.info("\n   Getting filtered products from database was successful.");
         } catch (Exception e) {
-            logger.error("Error during filtering products with query {} \n Stack: {}", query, e.getStackTrace());
+            logger.error("\n   Error during filtering products with query {} \n Stack: {}", query, e.getStackTrace());
         }
         return result;
     }

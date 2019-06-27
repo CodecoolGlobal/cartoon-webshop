@@ -21,7 +21,7 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
     public static SupplierDaoDB getInstance() {
         if (instance == null) {
             instance = new SupplierDaoDB();
-            logger.debug("Singleton instance of {} created", instance);
+            logger.debug("\n   Singleton instance of {} created", instance);
         }
         return instance;
     }
@@ -65,14 +65,14 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
                 returnedSupplier.setId(returnedId);
 
                 logger.debug(
-                    "The searching based on {} was successful. \n" +
-                    "   The following data retrieved from Database: Supplier: [{}]",
+                    "\n   The searching based on {} was successful." +
+                    "\n   The following data retrieved from Database:\n   Supplier: [{}]",
                     returnedId,
                     returnedSupplier
                 );
             }
         } catch (SQLException e) {
-            logger.error("Error during finding Supplier with id {}. \n Stack: {}", id, e.getStackTrace());
+            logger.error("\n   Error during finding Supplier with id {}. \n Stack: {}", id, e.getStackTrace());
         }
 
         return returnedSupplier;
@@ -107,7 +107,7 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
 
                 result.add(returnedSupplier);
 
-                logger.debug("Getting Supplier [{}] from database was successful.", returnedSupplier);
+                logger.debug("\n   Getting\n   Supplier [{}]\n   from database was successful.", returnedSupplier);
             }
 
         } catch (Exception e) {

@@ -4,10 +4,15 @@ import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.DB.ProductDaoDB;
 import com.codecool.shop.model.Product;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+    private static final Logger logger = LoggerFactory.getLogger(Order.class);
+
     private List<LineItem> itemList = new ArrayList<>();
     private User user;
     private static Order instance = null;
@@ -25,8 +30,6 @@ public class Order {
         return itemList;
     }
 
-
-
     public void add(int id){
 
         ProductDao productDataStore = ProductDaoDB.getInstance();
@@ -41,6 +44,7 @@ public class Order {
             for (LineItem orderItem: itemList) {
                 if (orderItem.getProduct().getId() == (item.getId())) {
                     orderItem.setQuantity(orderItem.getQuantity() + 1);
+                    logger.debug("Item with id {} added to the order.", id);
                     itemIsAlreadyInCart = true;
                 }
             }
@@ -49,6 +53,7 @@ public class Order {
             if (!itemIsAlreadyInCart) {
                 LineItem lineItem = new LineItem(item);
                 itemList.add(lineItem);
+                logger.debug("Item with id {} added to the order.", id);
             }
         }
 
@@ -62,6 +67,7 @@ public class Order {
                 } else {
                     itemList.remove(lineItem);
                 }
+                logger.debug("One piece of product with id {} was removed.", id);
                 break;
             }
         }
@@ -81,6 +87,11 @@ public class Order {
             sumOfItems += lineItem.getQuantity();
         }
         return sumOfItems;
+    }
+
+    public void clearOrder() {
+        itemList = new ArrayList<>();
+        logger.info("Order cleared.");
     }
 
     public void setUser(User user) {
