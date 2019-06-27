@@ -141,7 +141,7 @@ public class ProductDaoDB extends DB_connection implements ProductDao {
                 result.add(returnedProduct);
                 logger.debug("\n    Getting Product [{}] \n   from database was successful.", returnedProduct);
             }
-            logger.info("\n   Getting filtered products from database was successful.");
+            logger.info("Getting filtered products from database was successful.");
         } catch (Exception e) {
             logger.error("\n   Error during filtering products with query {} \n Stack: {}", query, e.getStackTrace());
         }

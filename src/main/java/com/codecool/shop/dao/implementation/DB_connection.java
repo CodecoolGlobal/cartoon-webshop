@@ -42,7 +42,7 @@ public abstract class DB_connection {
         Properties properties = new Properties();
         try {
             properties.load(Files.newBufferedReader(Paths.get(System.getProperty("user.dir"), "src/main/resources/connection.properties")));
-            logger.info("\n   Loading properties file for database was successful.");
+            logger.info("Loading properties file for database was successful.");
         } catch (IOException e) {
             logger.error("\n   Loading properties file for database was unsuccessful {}", e.getStackTrace());
         }
