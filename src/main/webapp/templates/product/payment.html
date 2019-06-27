@@ -1,43 +1,12 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Bootstrap components -->
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-    <!--Latest compiled and minified Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-    <!-- End of Bootstrap components -->
     <div th:replace="header.html :: copy"></div>
 </head>
 
 <body>
 
-<div class="bg">
-    <div class="jumbotron text-center">
-    </div>
-</div>
-
-<!-- NAV-BAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" th:href="@{/}">Back to homepage</a>
-        </div>
-    </div>
-</nav>
+<div th:insert="body.html :: copy"></div>
 
 <div class="container-fluid py-3">
     <div class="row">
@@ -59,7 +28,7 @@
                                         <i class="fa fa-paypal"></i> PayPal</a></li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="pill" href="#nav-tab-bitcoin">
-                                        <i class="fa fa-btc"></i> BitCoin</a></li>
+                                        <i class="fa fa-btc"></i> Crypto</a></li>
 
                             </ul>
                             <div class="tab-content">
@@ -96,7 +65,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-3 col-sm-9">
-                                                <button type="submit" class="btn btn-success" th:text="'Pay: ' + ${totalPrice}">Pay Now</button>
+                                                <button type="submit" class="submit-button btn btn-success" th:text="'Pay: ' + ${totalPrice}">Pay Now</button>
                                             </div>
                                         </div>
                                     </form>
@@ -111,11 +80,24 @@
                                     <div class="row mx-0 pt-5 d-flex justify-content-center">
                                         <div class="card shadow-lg">
                                             <div class="card-header card-header-divider text-center pt-4"> <img src="https://apirone.com/static/promo/bitcoin_logo_vector.svg" class="img-fluid" style="max-height: 42px;" width="205" alt=""><br>
-                                                <img src="https://apirone.com/api/v1/qr?message=1DonateWffyhwAjskoEwXt83pHZxhLTr8H&format=svg" style="max-width: 190px;" alt=""> </div>
+                                                <img src="./static/img/bitcoin_address.png" style="max-width: 190px;" alt=""> </div>
                                             <div class="card-body px-0">
-                                                <p class="text-center"><small><strong>1DonateWffyhwAjskoEwXt83pHZxhLTr8H</strong></small></p>
+                                                <p class="text-center"><small><strong>1A97HuJbXWyDcgDsizYdVhobPbqDRvw8LX</strong></small></p>
                                                 <p class="text-muted text-center">Scan QR code and top-up your<br>
                                                     Bitcoin balance for any amount.<br>
+                                                    Payment will be credited after 1 confirmation.<br>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-0 pt-5 d-flex justify-content-center">
+                                        <div class="card shadow-lg">
+                                            <div class="card-header card-header-divider text-center pt-4"> <img src="./static/img/ethereum_logo.png" class="img-fluid" style="max-height: 42px;" width="205" alt=""><br>
+                                                <img src="./static/img/ethereum_address.png" style="max-width: 190px;" alt=""> </div>
+                                            <div class="card-body px-0">
+                                                <p class="text-center"><small><strong>0x0E012B36f74e43f7fef5729Ee30A43115f0124B9</strong></small></p>
+                                                <p class="text-muted text-center">Scan QR code and top-up your<br>
+                                                    Ethereum balance for any amount.<br>
                                                     Payment will be credited after 1 confirmation.<br>
                                                 </p>
                                             </div>

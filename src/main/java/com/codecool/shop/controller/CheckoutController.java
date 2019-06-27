@@ -3,6 +3,8 @@ package com.codecool.shop.controller;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.order.Order;
 import com.codecool.shop.order.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -17,6 +19,7 @@ import java.util.Enumeration;
 
 @WebServlet(urlPatterns = {"/checkout"})
 public class CheckoutController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(CheckoutController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +36,8 @@ public class CheckoutController extends HttpServlet {
         setUserInOrder(req);
 
         resp.sendRedirect("/payment");
+
+        logger.info("Checkout confirmed.");
     }
 
     private void setUserInOrder(HttpServletRequest req) {

@@ -35,7 +35,11 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
 
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <div th:switch="${session.theme}">
+        <link th:case="'dark'" rel="stylesheet" type="text/css" href="/static/css/dark.css"/>
+        <link th:case="*" rel="stylesheet" type="text/css" href="/static/css/light.css"/>
+    </div>
+
 </div>
 
 </head>

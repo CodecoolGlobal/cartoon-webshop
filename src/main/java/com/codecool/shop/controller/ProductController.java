@@ -11,7 +11,11 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import com.codecool.shop.order.Order;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
+
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
@@ -19,11 +23,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     private ProductDao productDataStore = ProductDaoDB.getInstance();
     private ProductCategoryDao productCategoryDataStore = ProductCategoryDaoDB.getInstance();
@@ -31,11 +37,14 @@ public class ProductController extends HttpServlet {
 
     private Order order = Order.getInstance();
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
+
+        changeTheme(req);
 
         List<Product> filteredProducts = filterProducts(req);
         context.setVariable("products", filteredProducts);
@@ -74,6 +83,11 @@ public class ProductController extends HttpServlet {
             filteredProducts = productDataStore.getBy(filteredSupplier);
         }
 
+        else if(req.getParameter("search_expression") != null){
+            String searchedExpression = req.getParameter("search_expression");
+            filteredProducts = productDataStore.searchByExpression(searchedExpression);
+        }
+
         else{
             filteredProducts = productDataStore.getAll();
         }
@@ -85,6 +99,16 @@ public class ProductController extends HttpServlet {
         if (req.getParameter("added-item") != null) {
             int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
             order.add(itemToAdd);
+            logger.info("Item with id {} added to the order.", itemToAdd);
+        }
+    }
+
+    private void changeTheme(HttpServletRequest req) {
+        HttpSession session = req.getSession(true);
+
+        if(req.getParameter("theme") != null){
+            session.setAttribute("theme", req.getParameter("theme"));
+            logger.info("Changed theme to {}.", req.getParameter("theme"));
         }
     }
 
