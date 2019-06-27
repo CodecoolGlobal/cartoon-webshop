@@ -66,7 +66,7 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
 
                 logger.debug(
                     "The searching based on {} was successful. \n" +
-                    "The following data retrieved from Database: Supplier: [{}]",
+                    "   The following data retrieved from Database: Supplier: [{}]",
                     returnedId,
                     returnedSupplier
                 );
