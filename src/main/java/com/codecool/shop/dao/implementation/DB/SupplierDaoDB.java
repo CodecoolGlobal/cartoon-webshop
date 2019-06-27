@@ -41,9 +41,9 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
             if(generatedKey.next()){
                 supplier.setId(generatedKey.getInt(1));
             }
-            logger.debug("Supplier [{}] was added to database successfully", supplier);
+            logger.debug("\n   Supplier [{}] \n   was added to database successfully", supplier);
         } catch (Exception e) {
-            logger.error("Error during adding Supplier [{}] to database. \n Stack: ", supplier, e.getStackTrace());
+            logger.error("\n   Error during adding Supplier [{}]\n    to database. \n   Stack: ", supplier, e.getStackTrace());
         }
     }
 

@@ -126,12 +126,12 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
                 returnedProductCategory.setId(returned_id);
 
                 result.add(returnedProductCategory);
-                logger.debug("Getting ProductCategory [{}] from database was successful.", returnedProductCategory);
+                logger.debug("\n   Getting ProductCategory [{}] \n   from database was successful.", returnedProductCategory);
             }
             logger.info("All ProductCategories were successfully got from database.");
 
         } catch (Exception e) {
-            logger.error("Error during getting all ProductCategories from the database. \n Stack: {}", e.getStackTrace());
+            logger.error("Error during getting all ProductCategories from the database. \n    Stack: {}", e.getStackTrace());
         }
         return result;
     }
