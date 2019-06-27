@@ -21,6 +21,7 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
     public static SupplierDaoDB getInstance() {
         if (instance == null) {
             instance = new SupplierDaoDB();
+            logger.debug("Singleton instance of {} created", instance);
         }
         return instance;
     }
@@ -40,8 +41,9 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
             if(generatedKey.next()){
                 supplier.setId(generatedKey.getInt(1));
             }
+            logger.debug("Supplier [{}] was added to database successfully", supplier);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error during adding Supplier [{}] to database. \n Stack: ", supplier, e.getStackTrace());
         }
     }
 
@@ -62,14 +64,15 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
                 int returnedId = resultSet.getInt("id");
                 returnedSupplier.setId(returnedId);
 
-                logger.debug("The searching based on ID was successful. \n" +
-                        "The following data retrieved from Database: " +
-                        "Supplier: [" +
-                        returnedSupplier.toString() +
-                        "]");
+                logger.debug(
+                    "The searching based on {} was successful. \n" +
+                    "The following data retrieved from Database: Supplier: [{}]",
+                    returnedId,
+                    returnedSupplier
+                );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error during finding Supplier with id {}. \n Stack: {}", id, e.getStackTrace());
         }
 
         return returnedSupplier;
@@ -103,10 +106,12 @@ public class SupplierDaoDB extends DB_connection implements SupplierDao {
                 returnedSupplier.setId(returnedId);
 
                 result.add(returnedSupplier);
+
+                logger.debug("Getting Supplier [{}] from database was successful.", returnedSupplier);
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error during getting all Supplier from database. \n Stack: {}", e.getStackTrace());
         }
         return result;
     }

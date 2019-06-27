@@ -11,7 +11,11 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import com.codecool.shop.order.Order;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
+
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
@@ -25,6 +29,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     private ProductDao productDataStore = ProductDaoDB.getInstance();
     private ProductCategoryDao productCategoryDataStore = ProductCategoryDaoDB.getInstance();
@@ -94,6 +99,7 @@ public class ProductController extends HttpServlet {
         if (req.getParameter("added-item") != null) {
             int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
             order.add(itemToAdd);
+            logger.info("Item with id {} added to the order.", itemToAdd);
         }
     }
 
@@ -103,6 +109,7 @@ public class ProductController extends HttpServlet {
 
         if(req.getParameter("theme") != null){
             session.setAttribute("theme", req.getParameter("theme"));
+            logger.info("Changed theme to {}.", req.getParameter("theme"));
         }
     }
 }

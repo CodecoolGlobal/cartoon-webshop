@@ -3,6 +3,8 @@ package com.codecool.shop.controller;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.order.LineItem;
 import com.codecool.shop.order.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -16,6 +18,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/shopping-cart"})
 public class ShoppingCartController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(ShoppingCartController.class);
 
     private Order order = Order.getInstance();
 
@@ -48,6 +51,7 @@ public class ShoppingCartController extends HttpServlet {
         if (req.getParameter("removed-item") != null) {
             int itemToRemove = Integer.parseInt(req.getParameter("removed-item"));
             order.remove(itemToRemove);
+            logger.info("Item with id {} removed from the order.", itemToRemove);
         }
     }
 
@@ -55,6 +59,7 @@ public class ShoppingCartController extends HttpServlet {
         if (req.getParameter("added-item") != null) {
             int itemToAdd = Integer.parseInt(req.getParameter("added-item"));
             order.add(itemToAdd);
+            logger.info("Item with id {} added to the order.", itemToAdd);
         }
     }
 }
