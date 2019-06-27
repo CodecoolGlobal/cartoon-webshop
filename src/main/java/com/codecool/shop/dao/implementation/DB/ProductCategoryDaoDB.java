@@ -20,7 +20,7 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
     public static ProductCategoryDaoDB getInstance() {
         if (instance == null) {
             instance = new ProductCategoryDaoDB();
-            logger.debug("Singleton instance of {} created", instance);
+            logger.debug("\n   Singleton instance of {} created", instance);
         }
         return instance;
     }
@@ -43,9 +43,9 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
             if(generatedKey.next()){
                 category.setId(generatedKey.getInt(1));
             }
-            logger.debug("ProductCategory [{}] was added to database successfully.", category);
+            logger.debug("\n   ProductCategory [{}]\n   was added to database successfully.", category);
         } catch (Exception e) {
-            logger.error("Error during adding ProductCategories with query {} \n Stack: {}", statement, e.getStackTrace());
+            logger.error("\n   Error during adding ProductCategories with query {} \n Stack: {}", statement, e.getStackTrace());
         }
     }
 
@@ -78,8 +78,8 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
                 /*Creating logs for server (not mandatory)*/
 
                 logger.debug(
-                    "The searching based on {} was successful. \n" +
-                    "   The following data retrieved from Database: ProductCategory: [{}]",
+                    "\n   The searching based on {} was successful." +
+                    "\n   The following data retrieved from Database: ProductCategory: [{}]",
                     returned_id,
                     returnedProductCategory
                 );
