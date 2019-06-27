@@ -89,12 +89,13 @@ body {
 .moreMarginRight {
     margin-right: 25px;
 }
+/*======================Chat Box Starts=====================================================*/
 
 .chatbox {
     position: fixed;
-    bottom: 37px;
+    bottom: 50px;
     right: 30px;
-    width: 300px;
+    width: 400px;
     height: 400px;
     background-color: #fff;
     font-family: 'Lato', sans-serif;
@@ -110,11 +111,11 @@ body {
 }
 
 .chatbox--tray {
-    bottom: -320px;
+    bottom: -295px;
 }
 
 .chatbox--closed {
-    bottom: -200px;
+    bottom: -300px;
 }
 
 .chatbox .form-control:focus {
@@ -382,7 +383,7 @@ body {
     border-color: #DCDCDC;
 }
 .width50{width:50%;float:left;background:#ECECEC;}
-/*======================Chat Box Ends=====================================================*/
+
 /*======================Message=====================================================*/
 .message_check{padding-top:10px;}
 .messsade_date {
@@ -448,6 +449,7 @@ body {
     border-bottom-left-radius: 3px;
 }
 
+/*======================Chat Box Ends=====================================================*/
 #index_navbar, #navbar {
     background-color: #343a40;
 }
