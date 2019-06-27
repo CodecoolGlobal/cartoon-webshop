@@ -33,6 +33,7 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.sendRedirect("/");
+        Order.getInstance().clearOrder();
         logger.info("Payment confirmed.");
     }
 }

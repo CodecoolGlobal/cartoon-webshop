@@ -128,7 +128,7 @@ public class ProductCategoryDaoDB extends DB_connection implements ProductCatego
                 result.add(returnedProductCategory);
                 logger.debug("Getting ProductCategory [{}] from database was successful.", returnedProductCategory);
             }
-            logger.info("All ProductCategories were successfully got from database.");
+            logger.info("All ProductCategories were successfully received from database.");
 
         } catch (Exception e) {
             logger.error("Error during getting all ProductCategories from the database. \n Stack: {}", e.getStackTrace());
