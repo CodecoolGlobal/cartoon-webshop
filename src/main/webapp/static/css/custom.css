@@ -250,22 +250,22 @@ body {
 }
 
 .chatbox__body__message img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 2px solid #fcfcfc;
     position: absolute;
     top: 15px;
 }
 
-.chatbox__body__message--server p {
+.chatbox__body__message--Chuck_Norris p {
     background-color: goldenrod;
     margin-left: 15px;
     padding-left: 30px;
     text-align: left;padding-top: 25px;
 }
 
-.chatbox__body__message--server img {
+.chatbox__body__message--Chuck_Norris img {
     left: -5px;
 }
 
@@ -328,7 +328,7 @@ body {
 .ul_msg {
 
 
-    padding: 10px !important;
+    padding: 25px !important;
 
 }
 .chatbox__body__message--client .ul_section_full{
@@ -342,7 +342,7 @@ body {
     box-shadow: 1px 1px rgba(100, 100, 100, 0.1);margin-bottom: 15px;
     padding-bottom: 5px;padding-top:15px;
 }
-.chatbox__body__message--server .ul_section_full {
+.chatbox__body__message--Chuck_Norris .ul_section_full {
 
     margin-left: 15px;
     padding-left: 15px;

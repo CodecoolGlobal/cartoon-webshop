@@ -43,7 +43,8 @@ function sendMessage() {
 
     let clientMessage = {
         text: message,
-        author: 'client'
+        author: 'client',
+        picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2FwhYasy2bnB0s-J31rHYVUD5haTxdwm-E7LjT_4AXr2d9DxI'
     }
     messages.push(clientMessage);
     buildCloud();
@@ -57,7 +58,8 @@ function getMessage() {
                 .then(function (data) {
                     let serverResponse = {
                         text: data.value,
-                        author: 'Chuck Norris'
+                        author: 'Chuck_Norris',
+                        picture:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjatrn0Km5fe7T9yM2XdqTQWA9CbiqV83ZKxhvwF-D4K1jcYit'
                     }
                     messages.push(serverResponse)
                 }).then(function () {
@@ -81,6 +83,7 @@ function chatBoxClouds() {
 
     for (let chat of messages){
         element += `<div class ='chatbox__body__message chatbox__body__message--${chat['author']}'>
+               <img src=${chat['picture']} alt="Picture">
                <div class="clearfix"></div>
                <div class="ul_section_full">
                      <ul class="ul_msg">
