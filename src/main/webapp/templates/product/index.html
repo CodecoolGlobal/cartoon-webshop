@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="header.html :: copy"></div>
+    <script defer src="static/js/chatbox.js"></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
     <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item moreMarginRight">
-                <a class="nav-item nav-link active" th:href="@{/shopping-cart}">Shopping cart</a>
+                <a class="nav-item nav-link active" id="cart" th:href="@{/shopping-cart}">Shopping cart</a>
             </li>
             <li class="nav-item">
                 <div class="dropdown  moreMarginRight">
@@ -91,6 +92,38 @@
         </div>
     </div>
 
+</div>
+
+<div class="container">
+    <h2 style="text-align:center">Chat-box Created By <span class="red" style="color:red">M</span>ilind <span class="red" style="color:red">K</span>amthe</h2>
+    <p style="text-align:center"></p>
+    <hr>
+    <div class="row">
+        <div class="chatbox chatbox22 chatbox--tray">
+            <div class="chatbox__title">
+                <h5><strong>Customer Service</strong></h5>
+                <button class="chatbox__title__close">
+            <span>
+                <svg viewBox="0 0 12 12" width="12px" height="12px">
+                    <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                    <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+                </svg>
+            </span>
+                </button>
+            </div>
+            <div class="chatbox__body"></div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="btn-input" type="text" class="form-control input-sm chat_set_height" placeholder="Type your message here..." tabindex="0" dir="ltr" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" contenteditable="true" />
+
+                    <span class="input-group-btn">
+                            <button class="btn btn-success" id="send-message" >
+                                Send</button>
+                        </span>
+                </div>
+            </div>
+            </div>
+    </div>
 </div>
 
 <div th:replace="footer.html :: copy"></div>
