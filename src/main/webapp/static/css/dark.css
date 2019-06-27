@@ -85,6 +85,7 @@ body {
     background: url('/static/img/dark_footer_2.png') no-repeat center bottom fixed;
     background-color: black;
     width: 100%;
+    cursor: url('/static/img/axe_cursor.png'), pointer;
 }
 
 .moreMarginRight {
@@ -487,3 +488,7 @@ body {
 }
 
 /*======================Chat Box Ends=====================================================*/
+
+.unique_pointer{
+    cursor: url('/static/img/axe_cursor.png'), pointer
+}
