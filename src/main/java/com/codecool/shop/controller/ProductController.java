@@ -104,7 +104,6 @@ public class ProductController extends HttpServlet {
     }
 
     private void changeTheme(HttpServletRequest req) {
-
         HttpSession session = req.getSession(true);
 
         if(req.getParameter("theme") != null){
@@ -112,4 +111,5 @@ public class ProductController extends HttpServlet {
             logger.info("Changed theme to {}.", req.getParameter("theme"));
         }
     }
+
 }
