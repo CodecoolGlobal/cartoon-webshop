@@ -16,9 +16,6 @@
         <div class="col col-sm-12 col-md-6 col-lg-4 mb-3" th:each="prod,iterStat : ${products}">
             <div th:switch="${session.theme}" class="card">
 
-                    <img th:case="'light'" class="" src="http://placehold.it/348x250/000/fff"
-                         th:attr="src='/static/img/product_' + ${prod.id} + '.png'"
-                         alt="" />
                     <img th:case="'dark'" class="" src="http://placehold.it/348x250/000/fff"
                          th:attr="src='/static/img/dark_product_' + ${prod.id} + '.png'"
                          alt="" />
