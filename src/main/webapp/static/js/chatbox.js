@@ -1,8 +1,6 @@
-
-
 (function($) {
     $(document).ready(function() {
-        var $chatbox = $('.chatbox'),
+        let $chatbox = $('.chatbox'),
             $chatboxTitle = $('.chatbox__title'),
             $chatboxTitleClose = $('.chatbox__title__close'),
             $chatboxCredentials = $('.chatbox__credentials');
@@ -37,7 +35,6 @@ document.getElementById('send-message').addEventListener('click', conversation);
 
 let messages = [];
 
-
 function sendMessage() {
     let message = input.value;
 
@@ -45,7 +42,7 @@ function sendMessage() {
         text: message,
         author: 'client',
         picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2FwhYasy2bnB0s-J31rHYVUD5haTxdwm-E7LjT_4AXr2d9DxI'
-    }
+    };
     messages.push(clientMessage);
     buildCloud();
     document.getElementById('btn-input').value = "";
@@ -60,7 +57,7 @@ function getMessage() {
                         text: data.value,
                         author: 'Chuck_Norris',
                         picture:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjatrn0Km5fe7T9yM2XdqTQWA9CbiqV83ZKxhvwF-D4K1jcYit'
-                    }
+                    };
                     messages.push(serverResponse)
                 }).then(function () {
                     buildCloud();
@@ -73,10 +70,7 @@ function getMessage() {
 function conversation() {
     sendMessage();
     getMessage();
-};
-
-
-
+}
 
 function chatBoxClouds() {
     let element =``;
@@ -97,38 +91,9 @@ function chatBoxClouds() {
 
 }
 
-
 function buildCloud() {
         let chatBox = document.querySelector('.chatbox__body');
 
     chatBox.innerHTML = chatBoxClouds();
 
 }
-// function createChatCloud(whoIsSpeaking, message) {
-//     let chatbody = document.querySelector('.chatbox__body')
-//     let div = document.createElement('div')
-//
-//
-//     chatbody.innerHTML =
-//
-//          `<div class ='chatbox__body__message chatbox__body__message--${whoIsSpeaking}'>
-//               <div class="clearfix"></div>
-//               <div class="ul_section_full">
-//                     <ul class="ul_msg">
-//                         <li><strong>${whoIsSpeaking}</strong></li>
-//                         <li>${message}</li>
-//                     </ul>
-//               </div>
-//           </div>  `;
-
-   // chatBox.innerHTML = `<div class ='chatbox__body__message chatbox__body__message--${whoIsSpeaking}'>
-   //             <div class="clearfix"></div>
-   //             <div class="ul_section_full">
-   //                   <ul class="ul_msg">
-   //                       <li><strong>${whoIsSpeaking}</strong></li>
-   //                       <li>${message}</li>
-   //                   </ul>
-   //             </div>
-   //         </div>  `;
-// }
-// }
